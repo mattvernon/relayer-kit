@@ -14,6 +14,7 @@ import Api from "../../services/api";
 // Styling
 import "./CreateLoanRequest.css";
 import Title from "../Title/Title";
+import Error from "../Error/Error";
 
 class CreateLoanRequest extends Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class CreateLoanRequest extends Component {
             expirationLength: 0,
             expirationUnit: "days",
             disabled: false,
+            error: null,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -63,6 +65,7 @@ class CreateLoanRequest extends Component {
             this.props.onCompletion(id);
         } catch (e) {
             console.error(e);
+            this.setState({ error: e.message });
         }
     }
 
@@ -148,6 +151,7 @@ class CreateLoanRequest extends Component {
             expirationUnit,
             expirationLength,
             disabled,
+            error,
         } = this.state;
 
         const labelWidth = 3;
@@ -157,6 +161,11 @@ class CreateLoanRequest extends Component {
         return (
             <div className="CreateLoanRequest">
                 <Title>Create a Loan Request</Title>
+
+                {
+                    error && <Error title="Unable to create loan request">{error}</Error>
+                }
+
                 <Col md={7}>
                     <Form horizontal disabled={disabled} onSubmit={this.createLoanRequest}>
                         <FormGroup controlId="principal">
