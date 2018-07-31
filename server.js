@@ -17,12 +17,35 @@ const middlewares = jsonServer.defaults({
 
 server.use(middlewares);
 
-// Add a "createdAt" field for each new LoanRequest.
+/**
+ * An example function to show how we might add fees, given some data about the loan.
+ *
+ * @param loanData
+ */
+const getFee = (loanData) => {
+   const principalAmount = parseFloat(loanData.principalAmount);
+
+   if (!principalAmount) {
+       return 0;
+   }
+
+    // In this example we return a fee of 5% of the principal amount, rounded down to 2 decimals.
+    const feePercent = 5;
+    const totalFee = (principalAmount / 100) * feePercent;
+    return totalFee.toFixed(2);
+};
+
 server.use(jsonServer.bodyParser);
+
+// The client can request a relayer fee for some given loan data.
+server.get("/relayerFee", (req, res) => res.json({ fee: getFee(req.query) }));
+
+// Add a "createdAt" field for each new LoanRequest.
 server.use((req, res, next) => {
     if (req.method === "POST") {
         req.body.createdAt = Date.now();
     }
+
     // Continue to JSON Server router
     next();
 });
