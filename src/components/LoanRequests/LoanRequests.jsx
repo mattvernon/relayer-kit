@@ -146,7 +146,12 @@ class LoanRequests extends Component {
     render() {
         const { highlightRow, isLoading } = this.state;
 
-        const data = this.getData();
+        const data = this.getData().map((row) => {
+            return {
+                ...row,
+                interestRate: `${row.interestRate}%`,
+            };
+        });
 
         if (isLoading) {
             return <Loading/>;
