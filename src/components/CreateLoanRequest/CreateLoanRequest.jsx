@@ -1,6 +1,6 @@
 // External libraries
 import React, { Component } from "react";
-import { Button, Col, ControlLabel, Form, FormControl, FormGroup } from "react-bootstrap";
+import { Button, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from "react-bootstrap";
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
@@ -200,13 +200,16 @@ class CreateLoanRequest extends Component {
                             Interest Rate
                         </Col>
                         <Col sm={inputWidth}>
-                            <FormControl
-                                onChange={this.handleInputChange}
-                                type="number"
-                                placeholder="Interest Rate"
-                                name="interestRate"
-                                value={interestRate}
-                            />
+                            <InputGroup>
+                                <FormControl
+                                    onChange={this.handleInputChange}
+                                    type="number"
+                                    placeholder="Interest Rate"
+                                    name="interestRate"
+                                    value={interestRate}
+                                />
+                                <InputGroup.Addon>%</InputGroup.Addon>
+                            </InputGroup>
                         </Col>
                     </FormGroup>
 
