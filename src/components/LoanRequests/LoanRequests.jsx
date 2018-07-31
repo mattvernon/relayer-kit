@@ -19,44 +19,28 @@ import "./LoanRequests.css";
  */
 const columns = [
     {
-        dataField: "principalAmount",
+        dataField: "principal",
         text: "Principal",
-        sort: true,
-    },
-    {
-        dataField: "principalTokenSymbol",
-        text: "Principal Token Symbol",
-        sort: true,
     },
     {
         dataField: "interestRate",
         text: "Interest Rate",
-        sort: true,
     },
     {
         dataField: "termDuration",
         text: "Term Length",
-        sort: true,
     },
     {
-        dataField: "collateralAmount",
+        dataField: "collateral",
         text: "Collateral",
-        sort: true,
-    },
-    {
-        dataField: "collateralTokenSymbol",
-        text: "Collateral Token Symbol",
-        sort: true,
     },
     {
         dataField: "expiration",
         text: "Expiration",
-        sort: true,
     },
     {
         dataField: "requestedAt",
         text: "Requested at",
-        sort: true,
     },
 ];
 
@@ -137,6 +121,10 @@ class LoanRequests extends Component {
         return loanRequests.map((request) => {
             return {
                 ...request,
+                principal: `${request.principalAmount} ${request.principalTokenSymbol}`,
+                collateral: `${request.collateralAmount} ${request.collateralTokenSymbol}`,
+                interestRate: `${request.interestRate}%`,
+                termDuration: `${request.termDuration} ${request.termUnit}`,
                 expiration: moment.unix(request.expiresAt).fromNow(),
                 requestedAt: moment(request.requestedAt).calendar(),
             };
@@ -146,12 +134,7 @@ class LoanRequests extends Component {
     render() {
         const { highlightRow, isLoading } = this.state;
 
-        const data = this.getData().map((row) => {
-            return {
-                ...row,
-                interestRate: `${row.interestRate}%`,
-            };
-        });
+        const data = this.getData();
 
         if (isLoading) {
             return <Loading/>;
