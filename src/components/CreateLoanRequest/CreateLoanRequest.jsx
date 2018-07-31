@@ -1,6 +1,6 @@
 // External libraries
 import React, { Component } from "react";
-import { Button, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from "react-bootstrap";
+import { Button, Col, ControlLabel, Form, FormControl, FormGroup, HelpBlock, InputGroup } from "react-bootstrap";
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
@@ -29,10 +29,23 @@ class CreateLoanRequest extends Component {
             termUnit: "weeks",
             expirationLength: 0,
             expirationUnit: "days",
+            disabled: false,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.createLoanRequest = this.createLoanRequest.bind(this);
+    }
+
+    async getRelayerFee() {
+        const { principal } = this.state;
+
+        const api = new Api();
+
+        return new Promise((resolve) => {
+            api.get("relayerFee", { principalAmount: principal }).then((response) => {
+                resolve(response.fee);
+            });
+        });
     }
 
     async createLoanRequest(event) {
@@ -70,6 +83,7 @@ class CreateLoanRequest extends Component {
             principal,
             principalTokenSymbol,
             collateralTokenSymbol,
+            relayerFee,
             collateral,
             termUnit,
             expirationUnit,
@@ -84,6 +98,7 @@ class CreateLoanRequest extends Component {
             collateralAmount: collateral,
             collateralToken: collateralTokenSymbol,
             interestRate,
+            relayerFee,
             termDuration: termLength,
             termUnit,
             debtorAddress,
@@ -100,6 +115,17 @@ class CreateLoanRequest extends Component {
         this.setState({
             [name]: value,
         });
+
+        if (name === "principal") {
+            // When the principal changes, the form becomes disabled until the
+            // relayer fee has been updated.
+            this.setState({ disabled: true });
+
+            this.getRelayerFee().then((relayerFee) => {
+                console.log(relayerFee);
+                this.setState({ relayerFee, disabled: false });
+            });
+        }
     }
 
     render() {
@@ -113,12 +139,14 @@ class CreateLoanRequest extends Component {
             principal,
             principalTokenSymbol,
             collateral,
+            relayerFee,
             collateralTokenSymbol,
             termUnit,
             termLength,
             interestRate,
             expirationUnit,
             expirationLength,
+            disabled,
         } = this.state;
 
         const labelWidth = 3;
@@ -129,7 +157,7 @@ class CreateLoanRequest extends Component {
             <div className="CreateLoanRequest">
                 <Title>Create a Loan Request</Title>
                 <Col md={7}>
-                    <Form horizontal onSubmit={this.createLoanRequest}>
+                    <Form horizontal disabled={disabled} onSubmit={this.createLoanRequest}>
                         <FormGroup controlId="principal">
                             <Col componentClass={ControlLabel} sm={labelWidth}>
                                 Principal
@@ -235,6 +263,25 @@ class CreateLoanRequest extends Component {
                                     name="expirationUnit"
                                     defaultValue={expirationUnit}
                                 />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup controlId="expiration">
+                            <Col componentClass={ControlLabel} sm={labelWidth}>
+                                Relayer fee
+                            </Col>
+                            <Col sm={inputWidth}>
+                                <InputGroup>
+                                    <FormControl
+                                        type="number"
+                                        placeholder="Relayer fee"
+                                        name="relayerFee"
+                                        value={relayerFee}
+                                        readOnly
+                                    />
+                                    <InputGroup.Addon>{principalTokenSymbol}</InputGroup.Addon>
+                            </InputGroup>
+                            <HelpBlock>Relayer fee is deducted from principal amount.</HelpBlock>
                             </Col>
                         </FormGroup>
 
