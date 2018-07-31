@@ -1,6 +1,6 @@
 // External libraries
 import React, { Component } from "react";
-import { Button, Col, ControlLabel, Form, FormControl, FormGroup } from "react-bootstrap";
+import { Button, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from "react-bootstrap";
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
@@ -13,6 +13,7 @@ import Api from "../../services/api";
 
 // Styling
 import "./CreateLoanRequest.css";
+import Title from "../Title/Title";
 
 class CreateLoanRequest extends Component {
     constructor(props) {
@@ -121,126 +122,132 @@ class CreateLoanRequest extends Component {
         } = this.state;
 
         const labelWidth = 3;
-        const dropdownWidth = 3;
-        const inputWidth = 6;
+        const dropdownWidth = 4;
+        const inputWidth = 5;
 
         return (
-            <Col md={6}>
-                <Form horizontal onSubmit={this.createLoanRequest}>
-                    <FormGroup controlId="principal">
-                        <Col componentClass={ControlLabel} sm={labelWidth}>
-                            Principal
-                        </Col>
-                        <Col sm={inputWidth}>
-                            <FormControl
-                                onChange={this.handleInputChange}
-                                type="number"
-                                placeholder="Principal"
-                                name="principal"
-                                value={principal}
-                            />
-                        </Col>
-                        <Col sm={dropdownWidth}>
-                            <TokenSelect
-                                name="principalTokenSymbol"
-                                onChange={this.handleInputChange}
-                                defaultValue={principalTokenSymbol}
-                                tokens={tokens}
-                            />
-                        </Col>
-                    </FormGroup>
+            <div className="CreateLoanRequest">
+                <Title>Create a Loan Request</Title>
+                <Col md={7}>
+                    <Form horizontal onSubmit={this.createLoanRequest}>
+                        <FormGroup controlId="principal">
+                            <Col componentClass={ControlLabel} sm={labelWidth}>
+                                Principal
+                            </Col>
+                            <Col sm={inputWidth}>
+                                <FormControl
+                                    onChange={this.handleInputChange}
+                                    type="number"
+                                    placeholder="Principal"
+                                    name="principal"
+                                    value={principal}
+                                />
+                            </Col>
+                            <Col sm={dropdownWidth}>
+                                <TokenSelect
+                                    name="principalTokenSymbol"
+                                    onChange={this.handleInputChange}
+                                    defaultValue={principalTokenSymbol}
+                                    tokens={tokens}
+                                />
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup controlId="collateral">
-                        <Col componentClass={ControlLabel} sm={labelWidth}>
-                            Collateral
-                        </Col>
-                        <Col sm={inputWidth}>
-                            <FormControl
-                                onChange={this.handleInputChange}
-                                type="number"
-                                name="collateral"
-                                placeholder="Collateral"
-                                value={collateral}
-                            />
-                        </Col>
-                        <Col sm={dropdownWidth}>
-                            <TokenSelect
-                                onChange={this.handleInputChange}
-                                name="collateralTokenSymbol"
-                                defaultValue={collateralTokenSymbol}
-                                tokens={tokens}
-                            />
-                        </Col>
-                    </FormGroup>
+                        <FormGroup controlId="collateral">
+                            <Col componentClass={ControlLabel} sm={labelWidth}>
+                                Collateral
+                            </Col>
+                            <Col sm={inputWidth}>
+                                <FormControl
+                                    onChange={this.handleInputChange}
+                                    type="number"
+                                    name="collateral"
+                                    placeholder="Collateral"
+                                    value={collateral}
+                                />
+                            </Col>
+                            <Col sm={dropdownWidth}>
+                                <TokenSelect
+                                    onChange={this.handleInputChange}
+                                    name="collateralTokenSymbol"
+                                    defaultValue={collateralTokenSymbol}
+                                    tokens={tokens}
+                                />
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup controlId="term">
-                        <Col componentClass={ControlLabel} sm={labelWidth}>
-                            Term Length
-                        </Col>
-                        <Col sm={inputWidth}>
-                            <FormControl
-                                onChange={this.handleInputChange}
-                                type="number"
-                                placeholder="Term Length"
-                                name="termLength"
-                                value={termLength}
-                            />
-                        </Col>
-                        <Col sm={dropdownWidth}>
-                            <TimeUnitSelect
-                                onChange={this.handleInputChange}
-                                name="termUnit"
-                                defaultValue={termUnit}
-                            />
-                        </Col>
-                    </FormGroup>
+                        <FormGroup controlId="term">
+                            <Col componentClass={ControlLabel} sm={labelWidth}>
+                                Term Length
+                            </Col>
+                            <Col sm={inputWidth}>
+                                <FormControl
+                                    onChange={this.handleInputChange}
+                                    type="number"
+                                    placeholder="Term Length"
+                                    name="termLength"
+                                    value={termLength}
+                                />
+                            </Col>
+                            <Col sm={dropdownWidth}>
+                                <TimeUnitSelect
+                                    onChange={this.handleInputChange}
+                                    name="termUnit"
+                                    defaultValue={termUnit}
+                                />
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup controlId="interest">
-                        <Col componentClass={ControlLabel} sm={labelWidth}>
-                            Interest Rate
-                        </Col>
-                        <Col sm={inputWidth}>
-                            <FormControl
-                                onChange={this.handleInputChange}
-                                type="number"
-                                placeholder="Interest Rate"
-                                name="interestRate"
-                                value={interestRate}
-                            />
-                        </Col>
-                    </FormGroup>
+                        <FormGroup controlId="interest">
+                            <Col componentClass={ControlLabel} sm={labelWidth}>
+                                Interest Rate
+                            </Col>
+                            <Col sm={inputWidth}>
+                                <InputGroup>
+                                    <FormControl
+                                        onChange={this.handleInputChange}
+                                        type="number"
+                                        placeholder="Interest Rate"
+                                        name="interestRate"
+                                        value={interestRate}
+                                    />
+                                    <InputGroup.Addon>%</InputGroup.Addon>
+                                </InputGroup>
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup controlId="expiration">
-                        <Col componentClass={ControlLabel} sm={labelWidth}>
-                            Expiration
-                        </Col>
-                        <Col sm={inputWidth}>
-                            <FormControl
-                                onChange={this.handleInputChange}
-                                type="number"
-                                placeholder="Expiration"
-                                name="expirationLength"
-                                value={expirationLength}
-                            />
-                        </Col>
-                        <Col sm={dropdownWidth}>
-                            <TimeUnitSelect
-                                onChange={this.handleInputChange}
-                                name="expirationUnit"
-                                defaultValue={expirationUnit}
-                            />
-                        </Col>
-                    </FormGroup>
+                        <FormGroup controlId="expiration">
+                            <Col componentClass={ControlLabel} sm={labelWidth}>
+                                Expiration
+                            </Col>
+                            <Col sm={inputWidth}>
+                                <FormControl
+                                    onChange={this.handleInputChange}
+                                    type="number"
+                                    placeholder="Expiration"
+                                    name="expirationLength"
+                                    value={expirationLength}
+                                />
+                            </Col>
+                            <Col sm={dropdownWidth}>
+                                <TimeUnitSelect
+                                    onChange={this.handleInputChange}
+                                    name="expirationUnit"
+                                    defaultValue={expirationUnit}
+                                />
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup>
-                        <Col smOffset={labelWidth} sm={10}>
-                            <Button type="submit" bsStyle="primary">
-                                Create
-                            </Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-            </Col>
+                        <FormGroup>
+                            <Col smOffset={labelWidth} sm={10}>
+                                <Button type="submit" bsStyle="primary">
+                                    Create
+                                </Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </Col>
+            </div>
         );
     }
 }

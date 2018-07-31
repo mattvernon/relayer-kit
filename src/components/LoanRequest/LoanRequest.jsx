@@ -16,6 +16,11 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import { Breadcrumb, Panel } from "react-bootstrap";
 
+const TRANSACTION_DESCRIPTIONS = {
+    fill: "Loan Request Fill",
+    allowance: "Authorize Loan Request",
+};
+
 class LoanRequest extends Component {
     constructor(props) {
         super(props);
@@ -63,7 +68,7 @@ class LoanRequest extends Component {
             .fill()
             .then((txHash) => {
                 const { transactions } = this.state;
-                transactions.push({ txHash, description: "Loan Request Fill" });
+                transactions.push({ txHash, description: TRANSACTION_DESCRIPTIONS.fill });
 
                 this.setState({
                     transactions,
@@ -81,7 +86,7 @@ class LoanRequest extends Component {
 
         const txHash = await loanRequest.allowPrincipalTransfer();
 
-        transactions.push({ txHash, description: "Authorize Loan Request" });
+        transactions.push({ txHash, description: TRANSACTION_DESCRIPTIONS.allowance });
 
         this.setState({
             transactions,
@@ -130,7 +135,7 @@ class LoanRequest extends Component {
     render() {
         const { loanRequest, hasSufficientAllowance, transactions, error } = this.state;
 
-        const { dharma } = this.props;
+        const { dharma, onFillComplete } = this.props;
 
         if (!loanRequest || hasSufficientAllowance === null) {
             return <Loading />;
@@ -151,13 +156,21 @@ class LoanRequest extends Component {
                 {transactions.map((transaction) => {
                     const { txHash, description } = transaction;
 
+                    let onSuccess;
+
+                    if (description === TRANSACTION_DESCRIPTIONS.fill) {
+                        onSuccess = onFillComplete;
+                    } else {
+                        onSuccess = this.reloadState;
+                    }
+
                     return (
                         <TransactionManager
                             key={txHash}
                             txHash={txHash}
                             dharma={dharma}
                             description={description}
-                            onSuccess={this.reloadState}
+                            onSuccess={onSuccess}
                         />
                     );
                 })}

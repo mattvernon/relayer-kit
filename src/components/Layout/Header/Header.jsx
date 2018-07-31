@@ -26,6 +26,10 @@ class Header extends Component {
                     <LinkContainer to="/tokens">
                         <NavItem>Tokens</NavItem>
                     </LinkContainer>
+
+                    <LinkContainer to="/investments">
+                        <NavItem>Investments</NavItem>
+                    </LinkContainer>
                 </Nav>
             </Navbar>
         );

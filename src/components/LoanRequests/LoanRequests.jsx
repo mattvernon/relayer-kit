@@ -12,6 +12,7 @@ import Api from "../../services/api";
 
 // Styling
 import "./LoanRequests.css";
+import Title from "../Title/Title";
 
 /**
  * Here we define the columns that appear in the table that holds all of the
@@ -19,12 +20,8 @@ import "./LoanRequests.css";
  */
 const columns = [
     {
-        dataField: "principalAmount",
+        dataField: "principal",
         text: "Principal",
-    },
-    {
-        dataField: "principalTokenSymbol",
-        text: "Principal Token Symbol",
     },
     {
         dataField: "interestRate",
@@ -35,12 +32,8 @@ const columns = [
         text: "Term Length",
     },
     {
-        dataField: "collateralAmount",
+        dataField: "collateral",
         text: "Collateral",
-    },
-    {
-        dataField: "collateralTokenSymbol",
-        text: "Collateral Token Symbol",
     },
     {
         dataField: "expiration",
@@ -129,6 +122,10 @@ class LoanRequests extends Component {
         return loanRequests.map((request) => {
             return {
                 ...request,
+                principal: `${request.principalAmount} ${request.principalTokenSymbol}`,
+                collateral: `${request.collateralAmount} ${request.collateralTokenSymbol}`,
+                interestRate: `${request.interestRate}%`,
+                termDuration: `${request.termDuration} ${request.termUnit}`,
                 expiration: moment.unix(request.expiresAt).fromNow(),
                 requestedAt: moment(request.requestedAt).calendar(),
             };
@@ -161,14 +158,18 @@ class LoanRequests extends Component {
         };
 
         return (
-            <BootstrapTable
-                hover={true}
-                keyField="id"
-                columns={columns}
-                data={data}
-                rowEvents={rowEvents}
-                rowClasses={rowClasses}
-            />
+            <div className="LoanRequests">
+                <Title>Browse Loan Requests</Title>
+
+                <BootstrapTable
+                    hover={true}
+                    keyField="id"
+                    columns={columns}
+                    data={data}
+                    rowEvents={rowEvents}
+                    rowClasses={rowClasses}
+                />
+            </div>
         );
     }
 }
