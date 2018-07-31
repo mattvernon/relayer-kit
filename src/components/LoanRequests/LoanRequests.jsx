@@ -12,6 +12,7 @@ import Api from "../../services/api";
 
 // Styling
 import "./LoanRequests.css";
+import Title from "../Title/Title";
 
 /**
  * Here we define the columns that appear in the table that holds all of the
@@ -157,14 +158,18 @@ class LoanRequests extends Component {
         };
 
         return (
-            <BootstrapTable
-                hover={true}
-                keyField="id"
-                columns={columns}
-                data={data}
-                rowEvents={rowEvents}
-                rowClasses={rowClasses}
-            />
+            <div className="LoanRequests">
+                <Title>Browse Loan Requests</Title>
+
+                <BootstrapTable
+                    hover={true}
+                    keyField="id"
+                    columns={columns}
+                    data={data}
+                    rowEvents={rowEvents}
+                    rowClasses={rowClasses}
+                />
+            </div>
         );
     }
 }

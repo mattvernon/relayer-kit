@@ -4,6 +4,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 
 // Styling
 import "./Investments.css";
+import Title from "../Title/Title";
 
 const columns = [
     {
@@ -75,11 +76,15 @@ const investmentData = [
 class Investments extends React.Component {
     render() {
         return (
-            <BootstrapTable
-                keyField="id"
-                columns={columns}
-                data={investmentData}
-            />
+            <div className="Investments">
+                <Title>Your Investments</Title>
+
+                <BootstrapTable
+                    keyField="id"
+                    columns={columns}
+                    data={investmentData}
+                />
+            </div>
         );
     }
 }
