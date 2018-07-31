@@ -119,14 +119,13 @@ class CreateLoanRequest extends Component {
                 this.setState({
                     relayerFee,
                     disabled: false,
-                    principal: value,
                 });
             });
-        } else {
-            this.setState({
-                [name]: value,
-            });
         }
+
+        this.setState({
+            [name]: value,
+        });
     }
 
     render() {
@@ -288,7 +287,7 @@ class CreateLoanRequest extends Component {
 
                         <FormGroup>
                             <Col smOffset={labelWidth} sm={10}>
-                                <Button type="submit" bsStyle="primary">
+                                <Button type="submit" bsStyle="primary" disabled={disabled}>
                                     Create
                                 </Button>
                             </Col>
