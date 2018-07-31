@@ -11,6 +11,7 @@ import LoanRequestContainer from "../../../containers/LoanRequest";
 
 // Styling
 import "./Main.css";
+import InvestmentsContainer from "../../../containers/Investments";
 
 class Main extends Component {
     render() {
@@ -22,6 +23,7 @@ class Main extends Component {
                         <Route path="/create" component={CreateLoanRequestContainer} />
                         <Route path="/tokens" component={TokensContainer} />
                         <Route path="/request/:id" component={LoanRequestContainer} />
+                        <Route path="/investments" component={InvestmentsContainer} />
                     </Switch>
                 </Grid>
             </main>
