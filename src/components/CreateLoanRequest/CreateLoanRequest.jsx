@@ -64,6 +64,8 @@ class CreateLoanRequest extends Component {
     async authorizeCollateralTransfer(debtorAddress) {
         const { dharma } = this.props;
 
+        const { Allowance } = Dharma.Types;
+
         const { principalTokenSymbol } = this.state;
 
         const allowance = new Allowance(dharma, debtorAddress, principalTokenSymbol);
