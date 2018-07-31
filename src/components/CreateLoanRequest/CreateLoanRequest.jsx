@@ -1,6 +1,14 @@
 // External libraries
 import React, { Component } from "react";
-import { Button, Col, ControlLabel, Form, FormControl, FormGroup, InputGroup } from "react-bootstrap";
+import {
+    Button,
+    Col,
+    ControlLabel,
+    Form,
+    FormControl,
+    FormGroup,
+    InputGroup,
+} from "react-bootstrap";
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
@@ -43,8 +51,7 @@ class CreateLoanRequest extends Component {
         try {
             const debtorAddress = await this.getDebtorAddress();
             const loanRequest = await this.generateLoanRequest(debtorAddress);
-
-            await loanRequest.allowCollateralTransfer(debtorAddress);
+            await this.authorizeCollateralTransfer(debtorAddress);
 
             const id = await api.create("loanRequests", loanRequest.toJSON());
 
@@ -52,6 +59,16 @@ class CreateLoanRequest extends Component {
         } catch (e) {
             console.error(e);
         }
+    }
+
+    async authorizeCollateralTransfer(debtorAddress) {
+        const { dharma } = this.props;
+
+        const { principalTokenSymbol } = this.state;
+
+        const allowance = new Allowance(dharma, debtorAddress, principalTokenSymbol);
+
+        const txHash = await allowance.makeUnlimitedIfNecessary();
     }
 
     async getDebtorAddress() {
