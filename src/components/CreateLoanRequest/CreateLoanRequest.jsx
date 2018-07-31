@@ -36,13 +36,11 @@ class CreateLoanRequest extends Component {
         this.createLoanRequest = this.createLoanRequest.bind(this);
     }
 
-    async getRelayerFee() {
-        const { principal } = this.state;
-
+    async getRelayerFee(newPrincipalAmount) {
         const api = new Api();
 
         return new Promise((resolve) => {
-            api.get("relayerFee", { principalAmount: principal }).then((response) => {
+            api.get("relayerFee", { principalAmount: newPrincipalAmount }).then((response) => {
                 resolve(response.fee);
             });
         });
@@ -112,17 +110,21 @@ class CreateLoanRequest extends Component {
         const value = target.value;
         const name = target.name;
 
-        this.setState({
-            [name]: value,
-        });
-
         if (name === "principal") {
             // When the principal changes, the form becomes disabled until the
             // relayer fee has been updated.
             this.setState({ disabled: true });
 
-            this.getRelayerFee().then((relayerFee) => {
-                this.setState({ relayerFee, disabled: false });
+            this.getRelayerFee(value).then((relayerFee) => {
+                this.setState({
+                    relayerFee,
+                    disabled: false,
+                    principal: value,
+                });
+            });
+        } else {
+            this.setState({
+                [name]: value,
             });
         }
     }
