@@ -130,7 +130,7 @@ class LoanRequest extends Component {
     render() {
         const { loanRequest, hasSufficientAllowance, transactions, error } = this.state;
 
-        const { dharma } = this.props;
+        const { dharma, onFillComplete } = this.props;
 
         if (!loanRequest || hasSufficientAllowance === null) {
             return <Loading />;
@@ -150,6 +150,13 @@ class LoanRequest extends Component {
 
                 {transactions.map((transaction) => {
                     const { txHash, description } = transaction;
+                    let onSuccess;
+
+                    if (description === "Loan Request Fill") {
+                        onSuccess = onFillComplete;
+                    } else {
+                        onSuccess = this.reloadState;
+                    }
 
                     return (
                         <TransactionManager
@@ -157,7 +164,7 @@ class LoanRequest extends Component {
                             txHash={txHash}
                             dharma={dharma}
                             description={description}
-                            onSuccess={this.reloadState}
+                            onSuccess={onSuccess}
                         />
                     );
                 })}

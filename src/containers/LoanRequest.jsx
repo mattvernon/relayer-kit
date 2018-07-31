@@ -8,13 +8,29 @@ import LoanRequest from "../components/LoanRequest/LoanRequest";
 import DharmaConsumer from "../contexts/Dharma/DharmaConsumer";
 
 class LoanRequestContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onFillComplete = this.onFillComplete.bind(this);
+    }
+
+    onFillComplete() {
+        this.props.history.push(`/investments`);
+    }
+
     render() {
-        const { id } = this.props.match.params;
+        const {id} = this.props.match.params;
 
         return (
             <DharmaConsumer>
                 { (dharmaProps) => {
-                    return <LoanRequest id={ id } dharma={ dharmaProps.dharma }/>
+                    return (
+                        <LoanRequest
+                            id={ id }
+                            dharma={ dharmaProps.dharma }
+                            onFillComplete={ this.onFillComplete }
+                        />
+                    )
                 } }
             </DharmaConsumer>
         );
