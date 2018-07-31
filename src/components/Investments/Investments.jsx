@@ -29,7 +29,7 @@ const columns = [
         text: "Repaid",
     },
     {
-        dataField: "totalExpectedRepayment",
+        dataField: "totalExpectedRepaymentAmount",
         text: "Total Expected Repayment",
     },
 ];
@@ -69,7 +69,7 @@ class Investments extends React.Component {
                 collateral: `${investment.collateralAmount} ${investment.collateralTokenSymbol}`,
                 term: `${investment.termDuration} ${investment.termUnit}`,
                 repaidAmount: `${investment.repaidAmount} ${investment.principalTokenSymbol}`,
-                totalExpectedRepayment: `${investment.totalExpectedRepayment} ${
+                totalExpectedRepaymentAmount: `${investment.totalExpectedRepaymentAmount} ${
                     investment.principalTokenSymbol
                 }`,
             };
