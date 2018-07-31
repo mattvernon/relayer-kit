@@ -122,7 +122,6 @@ class CreateLoanRequest extends Component {
             this.setState({ disabled: true });
 
             this.getRelayerFee().then((relayerFee) => {
-                console.log(relayerFee);
                 this.setState({ relayerFee, disabled: false });
             });
         }
