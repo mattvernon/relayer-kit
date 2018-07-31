@@ -21,34 +21,42 @@ const columns = [
     {
         dataField: "principalAmount",
         text: "Principal",
+        sort: true,
     },
     {
         dataField: "principalTokenSymbol",
         text: "Principal Token Symbol",
+        sort: true,
     },
     {
         dataField: "interestRate",
         text: "Interest Rate",
+        sort: true,
     },
     {
         dataField: "termDuration",
         text: "Term Length",
+        sort: true,
     },
     {
         dataField: "collateralAmount",
         text: "Collateral",
+        sort: true,
     },
     {
         dataField: "collateralTokenSymbol",
         text: "Collateral Token Symbol",
+        sort: true,
     },
     {
         dataField: "expiration",
         text: "Expiration",
+        sort: true,
     },
     {
         dataField: "requestedAt",
         text: "Requested at",
+        sort: true,
     },
 ];
 
