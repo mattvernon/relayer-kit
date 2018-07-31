@@ -28,7 +28,10 @@ class LoanRequestContainer extends Component {
                         <LoanRequest
                             id={ id }
                             dharma={ dharmaProps.dharma }
-                            onFillComplete={ this.onFillComplete }
+                            onFillComplete={ () => {
+                                dharmaProps.refreshTokens();
+                                this.onFillComplete();
+                            } }
                         />
                     )
                 } }

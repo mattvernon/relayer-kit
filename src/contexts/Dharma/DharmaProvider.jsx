@@ -28,6 +28,8 @@ class DharmaProvider extends Component {
             // The tokens available for lending on Dharma Protocol.
             supportedTokens: [],
         };
+
+        this.getUserTokens = this.getUserTokens.bind(this);
     }
 
     componentDidMount() {
@@ -62,6 +64,7 @@ class DharmaProvider extends Component {
             dharma: dharma,
             tokens: this.state.tokens,
             supportedTokens: this.state.supportedTokens,
+            refreshTokens: this.getUserTokens,
         };
 
         return (
