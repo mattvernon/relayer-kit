@@ -66,9 +66,9 @@ class CreateLoanRequest extends Component {
 
         const { Allowance } = Dharma.Types;
 
-        const { principalTokenSymbol } = this.state;
+        const { collateralTokenSymbol } = this.state;
 
-        const allowance = new Allowance(dharma, debtorAddress, principalTokenSymbol);
+        const allowance = new Allowance(dharma, debtorAddress, collateralTokenSymbol);
 
         await allowance.makeUnlimitedIfNecessary();
 
