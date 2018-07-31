@@ -15,6 +15,18 @@ const middlewares = jsonServer.defaults({
     static: path.join(__dirname, "build"),
 });
 
+/**
+ * This is where you put your address to start receiving fees.
+ * @type {string}
+ */
+const RELAYER_ADDRESS = "0x0000000000000000000000000000000000000000";
+
+/**
+ * This is an example of a way to set a fee amount per order filled.
+ * @type {number}
+ */
+const FEE_PERCENT = 5;
+
 server.use(middlewares);
 
 /**
@@ -30,8 +42,7 @@ const getFee = (loanData) => {
    }
 
     // In this example we return a fee of 5% of the principal amount, rounded down to 2 decimals.
-    const feePercent = 5;
-    const totalFee = (principalAmount / 100) * feePercent;
+    const totalFee = (principalAmount / 100) * FEE_PERCENT;
     return totalFee.toFixed(2);
 };
 
@@ -39,11 +50,15 @@ server.use(jsonServer.bodyParser);
 
 // The client can request a relayer fee for some given loan data.
 server.get("/relayerFee", (req, res) => res.json({ fee: getFee(req.query) }));
+server.get("/relayerAddress", (req, res) => res.json({ address: RELAYER_ADDRESS }));
 
 // Add a "createdAt" field for each new LoanRequest.
 server.use((req, res, next) => {
     if (req.method === "POST") {
         req.body.createdAt = Date.now();
+
+        // NOTE: Here one could check if the relayer address and fee match the
+        // expected values.
     }
 
     // Continue to JSON Server router

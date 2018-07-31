@@ -25,6 +25,7 @@ class CreateLoanRequest extends Component {
             principalTokenSymbol: "WETH",
             collateral: 0,
             relayerFee: 0,
+            relayer: null,
             collateralTokenSymbol: "REP",
             interestRate: 0,
             termLength: 0,
@@ -37,6 +38,14 @@ class CreateLoanRequest extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.createLoanRequest = this.createLoanRequest.bind(this);
+    }
+
+    async componentDidMount() {
+        const api = new Api();
+
+        const relayer = await api.get("relayerAddress");
+
+        this.setState({ relayer });
     }
 
     async getRelayerFee(newPrincipalAmount) {
@@ -92,6 +101,7 @@ class CreateLoanRequest extends Component {
             expirationLength,
             interestRate,
             termLength,
+            relayer,
         } = this.state;
 
         return LoanRequest.create(dharma, {
@@ -101,6 +111,7 @@ class CreateLoanRequest extends Component {
             collateralToken: collateralTokenSymbol,
             interestRate,
             relayerFee,
+            relayer,
             termDuration: termLength,
             termUnit,
             debtorAddress,
