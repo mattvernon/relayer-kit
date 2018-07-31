@@ -14,7 +14,7 @@ class TokenSelect extends Component {
                 defaultValue={defaultValue}>
                 {tokens.map((token) => (
                     <option key={token.symbol} value={token.symbol}>
-                        {token.name}
+                        {`${token.symbol} (${token.name})`}
                     </option>
                 ))}
             </FormControl>

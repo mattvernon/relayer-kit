@@ -22,6 +22,7 @@ import Api from "../../services/api";
 // Styling
 import "./CreateLoanRequest.css";
 import Title from "../Title/Title";
+import Error from "../Error/Error";
 
 class CreateLoanRequest extends Component {
     constructor(props) {
@@ -31,16 +32,38 @@ class CreateLoanRequest extends Component {
             principal: 0,
             principalTokenSymbol: "WETH",
             collateral: 0,
+            relayerFee: 0,
+            relayer: null,
             collateralTokenSymbol: "REP",
             interestRate: 0,
             termLength: 0,
             termUnit: "weeks",
             expirationLength: 0,
             expirationUnit: "days",
+            disabled: false,
+            error: null,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.createLoanRequest = this.createLoanRequest.bind(this);
+    }
+
+    async componentDidMount() {
+        const api = new Api();
+
+        const relayer = await api.get("relayerAddress");
+
+        this.setState({ relayer });
+    }
+
+    async getRelayerFee(newPrincipalAmount) {
+        const api = new Api();
+
+        return new Promise((resolve) => {
+            api.get("relayerFee", { principalAmount: newPrincipalAmount }).then((response) => {
+                resolve(response.fee);
+            });
+        });
     }
 
     async createLoanRequest(event) {
@@ -58,6 +81,7 @@ class CreateLoanRequest extends Component {
             this.props.onCompletion(id);
         } catch (e) {
             console.error(e);
+            this.setState({ error: e.message });
         }
     }
 
@@ -91,12 +115,14 @@ class CreateLoanRequest extends Component {
             principal,
             principalTokenSymbol,
             collateralTokenSymbol,
+            relayerFee,
             collateral,
             termUnit,
             expirationUnit,
             expirationLength,
             interestRate,
             termLength,
+            relayer,
         } = this.state;
 
         return LoanRequest.create(dharma, {
@@ -105,6 +131,8 @@ class CreateLoanRequest extends Component {
             collateralAmount: collateral,
             collateralToken: collateralTokenSymbol,
             interestRate,
+            relayerFee,
+            relayer,
             termDuration: termLength,
             termUnit,
             debtorAddress,
@@ -117,6 +145,19 @@ class CreateLoanRequest extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
+
+        if (name === "principal") {
+            // When the principal changes, the form becomes disabled until the
+            // relayer fee has been updated.
+            this.setState({ disabled: true });
+
+            this.getRelayerFee(value).then((relayerFee) => {
+                this.setState({
+                    relayerFee,
+                    disabled: false,
+                });
+            });
+        }
 
         this.setState({
             [name]: value,
@@ -134,12 +175,15 @@ class CreateLoanRequest extends Component {
             principal,
             principalTokenSymbol,
             collateral,
+            relayerFee,
             collateralTokenSymbol,
             termUnit,
             termLength,
             interestRate,
             expirationUnit,
             expirationLength,
+            disabled,
+            error,
         } = this.state;
 
         const labelWidth = 3;
@@ -149,8 +193,11 @@ class CreateLoanRequest extends Component {
         return (
             <div className="CreateLoanRequest">
                 <Title>Create a Loan Request</Title>
+
+                {error && <Error title="Unable to create loan request">{error}</Error>}
+
                 <Col md={7}>
-                    <Form horizontal onSubmit={this.createLoanRequest}>
+                    <Form horizontal disabled={disabled} onSubmit={this.createLoanRequest}>
                         <FormGroup controlId="principal">
                             <Col componentClass={ControlLabel} sm={labelWidth}>
                                 Principal
@@ -259,9 +306,30 @@ class CreateLoanRequest extends Component {
                             </Col>
                         </FormGroup>
 
+                        <FormGroup controlId="expiration">
+                            <Col componentClass={ControlLabel} sm={labelWidth}>
+                                Relayer fee
+                            </Col>
+                            <Col sm={inputWidth}>
+                                <InputGroup>
+                                    <FormControl
+                                        type="number"
+                                        placeholder="Relayer fee"
+                                        name="relayerFee"
+                                        value={relayerFee}
+                                        readOnly
+                                    />
+                                    <InputGroup.Addon>{principalTokenSymbol}</InputGroup.Addon>
+                                </InputGroup>
+                                <HelpBlock>
+                                    Relayer fee is deducted from principal amount.
+                                </HelpBlock>
+                            </Col>
+                        </FormGroup>
+
                         <FormGroup>
                             <Col smOffset={labelWidth} sm={10}>
-                                <Button type="submit" bsStyle="primary">
+                                <Button type="submit" bsStyle="primary" disabled={disabled}>
                                     Create
                                 </Button>
                             </Col>

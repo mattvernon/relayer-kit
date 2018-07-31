@@ -76,7 +76,10 @@ class LoanRequests extends Component {
 
         const api = new Api();
 
-        api.get("loanRequests")
+        const sort = "createdAt";
+        const order = "desc";
+
+        api.get("loanRequests", { sort, order })
             .then(this.parseLoanRequests)
             .then((loanRequests) => this.setState({ loanRequests, isLoading: false }))
             .catch((error) => console.error(error));
