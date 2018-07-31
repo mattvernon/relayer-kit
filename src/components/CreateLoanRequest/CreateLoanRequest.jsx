@@ -70,7 +70,9 @@ class CreateLoanRequest extends Component {
 
         const allowance = new Allowance(dharma, debtorAddress, principalTokenSymbol);
 
-        const txHash = await allowance.makeUnlimitedIfNecessary();
+        await allowance.makeUnlimitedIfNecessary();
+
+        // TODO(kayvon): handle async call to mine transaction if necessary
     }
 
     async getDebtorAddress() {
