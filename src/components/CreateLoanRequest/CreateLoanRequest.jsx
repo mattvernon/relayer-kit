@@ -1,6 +1,14 @@
 // External libraries
 import React, { Component } from "react";
-import { Button, Col, ControlLabel, Form, FormControl, FormGroup, HelpBlock, InputGroup } from "react-bootstrap";
+import {
+    Button,
+    Col,
+    ControlLabel,
+    Form,
+    FormControl,
+    FormGroup,
+    InputGroup,
+} from "react-bootstrap";
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
@@ -66,8 +74,7 @@ class CreateLoanRequest extends Component {
         try {
             const debtorAddress = await this.getDebtorAddress();
             const loanRequest = await this.generateLoanRequest(debtorAddress);
-
-            await loanRequest.allowCollateralTransfer(debtorAddress);
+            await this.authorizeCollateralTransfer(debtorAddress);
 
             const id = await api.create("loanRequests", loanRequest.toJSON());
 
@@ -76,6 +83,20 @@ class CreateLoanRequest extends Component {
             console.error(e);
             this.setState({ error: e.message });
         }
+    }
+
+    async authorizeCollateralTransfer(debtorAddress) {
+        const { dharma } = this.props;
+
+        const { Allowance } = Dharma.Types;
+
+        const { collateralTokenSymbol } = this.state;
+
+        const allowance = new Allowance(dharma, debtorAddress, collateralTokenSymbol);
+
+        await allowance.makeUnlimitedIfNecessary();
+
+        // TODO(kayvon): handle async call to mine transaction if necessary
     }
 
     async getDebtorAddress() {
@@ -173,9 +194,7 @@ class CreateLoanRequest extends Component {
             <div className="CreateLoanRequest">
                 <Title>Create a Loan Request</Title>
 
-                {
-                    error && <Error title="Unable to create loan request">{error}</Error>
-                }
+                {error && <Error title="Unable to create loan request">{error}</Error>}
 
                 <Col md={7}>
                     <Form horizontal disabled={disabled} onSubmit={this.createLoanRequest}>
@@ -301,8 +320,10 @@ class CreateLoanRequest extends Component {
                                         readOnly
                                     />
                                     <InputGroup.Addon>{principalTokenSymbol}</InputGroup.Addon>
-                            </InputGroup>
-                            <HelpBlock>Relayer fee is deducted from principal amount.</HelpBlock>
+                                </InputGroup>
+                                <HelpBlock>
+                                    Relayer fee is deducted from principal amount.
+                                </HelpBlock>
                             </Col>
                         </FormGroup>
 
