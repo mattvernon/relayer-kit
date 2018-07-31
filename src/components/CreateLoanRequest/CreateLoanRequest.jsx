@@ -121,11 +121,11 @@ class CreateLoanRequest extends Component {
         } = this.state;
 
         const labelWidth = 3;
-        const dropdownWidth = 3;
-        const inputWidth = 6;
+        const dropdownWidth = 4;
+        const inputWidth = 5;
 
         return (
-            <Col md={6}>
+            <Col md={7}>
                 <Form horizontal onSubmit={this.createLoanRequest}>
                     <FormGroup controlId="principal">
                         <Col componentClass={ControlLabel} sm={labelWidth}>
