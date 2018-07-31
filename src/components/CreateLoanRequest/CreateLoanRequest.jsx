@@ -23,6 +23,7 @@ class CreateLoanRequest extends Component {
             principal: 0,
             principalTokenSymbol: "WETH",
             collateral: 0,
+            relayerFee: 0,
             collateralTokenSymbol: "REP",
             interestRate: 0,
             termLength: 0,
