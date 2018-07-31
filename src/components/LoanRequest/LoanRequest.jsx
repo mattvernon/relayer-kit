@@ -84,13 +84,23 @@ class LoanRequest extends Component {
     async handleAuthorize() {
         const { loanRequest, transactions } = this.state;
 
-        const txHash = await loanRequest.allowPrincipalTransfer();
+        const { dharma } = this.props;
 
-        transactions.push({ txHash, description: TRANSACTION_DESCRIPTIONS.allowance });
+        const { Allowance } = Dharma.Types;
 
-        this.setState({
-            transactions,
-        });
+        const owner = await dharma.blockchain.getCurrentAccount();
+
+        const allowance = new Allowance(dharma, owner, loanRequest.principalTokenSymbol);
+
+        const txHash = await allowance.makeUnlimitedIfNecessary();
+
+        if (txHash) {
+            transactions.push({ txHash, description: TRANSACTION_DESCRIPTIONS.allowance });
+
+            this.setState({
+                transactions,
+            });
+        }
     }
 
     async assertFillable() {
