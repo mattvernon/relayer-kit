@@ -6,6 +6,7 @@ import LoanRequest from "../components/LoanRequest/LoanRequest";
 
 // Contexts
 import DharmaConsumer from "../contexts/Dharma/DharmaConsumer";
+import Api from "../services/api";
 
 class LoanRequestContainer extends Component {
     constructor(props) {
@@ -14,7 +15,11 @@ class LoanRequestContainer extends Component {
         this.onFillComplete = this.onFillComplete.bind(this);
     }
 
-    onFillComplete() {
+    async onFillComplete(id) {
+        const api = new Api();
+
+        await api.delete("loanRequests", id);
+
         this.props.history.push(`/investments`);
     }
 
@@ -28,9 +33,9 @@ class LoanRequestContainer extends Component {
                         <LoanRequest
                             id={ id }
                             dharma={ dharmaProps.dharma }
-                            onFillComplete={ () => {
+                            onFillComplete={ async () => {
                                 dharmaProps.refreshTokens();
-                                this.onFillComplete();
+                                await this.onFillComplete(id);
                             } }
                         />
                     )

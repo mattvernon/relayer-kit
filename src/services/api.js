@@ -58,6 +58,21 @@ class Api {
     }
 
     /**
+     * Allows deleting a record from the database.
+     *
+     * @param resource
+     * @param id
+     * @returns {Promise}
+     */
+    delete(resource, id) {
+        return new Promise((resolve, reject) => {
+            fetch(`${this.apiUrl}/${resource}/${id}`, { method: "DELETE" })
+                .then((response) => resolve(response.json()))
+                .catch((reason) => reject(reason));
+        });
+    }
+
+    /**
      * Creates a new resource by posting the given data to the API.
      *
      * @param resource
