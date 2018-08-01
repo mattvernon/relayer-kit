@@ -13,6 +13,7 @@ import Api from "../../services/api";
 // Styling
 import "./LoanRequests.css";
 import Title from "../Title/Title";
+import LoanRequestsEmpty from "./LoanRequestsEmpty/LoanRequestsEmpty";
 
 /**
  * Here we define the columns that appear in the table that holds all of the
@@ -172,6 +173,10 @@ class LoanRequests extends Component {
                     rowEvents={rowEvents}
                     rowClasses={rowClasses}
                 />
+
+                {
+                    data.length === 0 && <LoanRequestsEmpty/>
+                }
             </div>
         );
     }
