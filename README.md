@@ -7,7 +7,7 @@ Features include:
 -   :money_with_wings: Collect real cryptocurrency through relayer fees
 -   :rocket: Deploy to Heroku instantly
 -   :art: Define your own style with our unopinionated React components
--   :computer: Hack using the world's most accesible programming language: JavaScript
+-   :computer: Hack using the world's most accessible programming language: JavaScript
 
 The Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on your business, and not the blockchain.
 
