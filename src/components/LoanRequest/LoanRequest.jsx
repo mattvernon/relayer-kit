@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 import Api from "../../services/api";
 
-import Actions from "./Actions/Actions";
+import AuthorizableAction from "../AuthorizableAction/AuthorizableAction";
 import Terms from "./Terms/Terms";
 import NotFillableAlert from "./Alert/NotFillableAlert";
 
@@ -127,8 +127,7 @@ class LoanRequest extends Component {
 
         const { Tokens } = Dharma.Types;
 
-        const accounts = await dharma.blockchain.getAccounts();
-        const currentAccount = accounts[0];
+        const currentAccount = await dharma.blockchain.getCurrentAccount();
 
         const tokens = new Tokens(dharma, currentAccount);
         const terms = loanRequest.getTerms();
@@ -194,12 +193,13 @@ class LoanRequest extends Component {
                         <Terms terms={loanRequest.getTerms()} />
                     </Panel.Body>
                     <Panel.Footer>
-                        <Actions
-                            canFill={!error && hasSufficientAllowance}
+                        <AuthorizableAction
+                            canTakeAction={!error && hasSufficientAllowance}
                             canAuthorize={!hasSufficientAllowance}
-                            onFill={this.handleFill}
-                            onAuthorize={this.handleAuthorize}
-                        />
+                            onAction={this.handleFill}
+                            onAuthorize={this.handleAuthorize}>
+                            Fill
+                        </AuthorizableAction>
                     </Panel.Footer>
                 </Panel>
             </div>
