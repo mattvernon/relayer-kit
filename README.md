@@ -1,43 +1,40 @@
 ![Dharma Relayer Kit](public/dharma_relayer_banner.png)
 
 The Dharma Relayer Kit is the definitive starting point for anyone interested in building a
-business on top of [Dharma Protocol](https://dharma.io/).
-
-The Dharma Relayer Kit allows entrepreneurs to focus on their business, not the blockchain.
+business on top of [Dharma Protocol](https://dharma.io/). The Dharma Relayer Kit allows entrepreneurs to focus on their business, not the blockchain.
 
 The Kit is packed with features:
 
--   :money_with_wings: Collect real cryptocurrency through relayer fees
--   :rocket: Deployable to Heroku out of the box
--   :art: Unstyled React components that can be easily branded
--   :computer: Only one programming language required: JavaScript
+:money_with_wings: Collect real cryptocurrency through relayer fees
+:rocket: Deployable to Heroku out of the box
+:art: Unstyled React components that can be easily branded
+:computer: Only one programming language required: JavaScript
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-- [Getting Started](#getting-started)
-  - [Clone](#clone)
-  - [Dependencies](#dependencies)
-  - [Blockchain](#blockchain)
-  - [Backend](#backend)
-  - [Frontend](#frontend)
-- [Running on Kovan](#running-on-kovan)
-  - [Backend](#backend-1)
-  - [Frontend](#frontend-1)
-- [Deployment](#deployment)
-  - [Create a new Heroku app:](#create-a-new-heroku-app)
-  - [Set which network you want to deploy to:](#set-which-network-you-want-to-deploy-to)
-  - [Overwrite the app's files with your relayer kit:](#overwrite-the-apps-files-with-your-relayer-kit)
-  - [Open your new relayer on Heroku:](#open-your-new-relayer-on-heroku)
-- [FAQ](#faq)
-  - [What is Dharma?](#what-is-dharma)
-  - [What is a Dharma Relayer?](#what-is-a-dharma-relayer)
-  - [Why start a Dharma Relayer?](#why-start-a-dharma-relayer)
-  - [How does a Dharma Relayer generate revenue?](#how-does-a-dharma-relayer-generate-revenue)
-  - [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
-  - [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
-  - [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
+-   [Getting Started](#getting-started)
+    -   [Clone](#clone)
+    -   [Dependencies](#dependencies)
+    -   [Blockchain](#blockchain)
+    -   [Backend](#backend)
+    -   [Frontend](#frontend)
+-   [Running on Kovan](#running-on-kovan)
+    -   [Backend](#backend-1)
+    -   [Frontend](#frontend-1)
+-   [Deployment](#deployment)
+    -   [Create a new Heroku app:](#create-a-new-heroku-app)
+    -   [Set which network you want to deploy to:](#set-which-network-you-want-to-deploy-to)
+    -   [Overwrite the app's files with your relayer kit:](#overwrite-the-apps-files-with-your-relayer-kit)
+    -   [Open your new relayer on Heroku:](#open-your-new-relayer-on-heroku)
+-   [FAQ](#faq)
+    -   [What is Dharma?](#what-is-dharma)
+    -   [What is a Dharma Relayer?](#what-is-a-dharma-relayer)
+    -   [Why start a Dharma Relayer?](#why-start-a-dharma-relayer)
+    -   [How does a Dharma Relayer generate revenue?](#how-does-a-dharma-relayer-generate-revenue)
+    -   [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
+    -   [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
+    -   [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
