@@ -1,40 +1,4 @@
 {
   "loanRequests": [
-    {
-      "kernelVersion": "0x755e131019e5ab3e213dc269a4020e3e82e06e20",
-      "issuanceVersion": "0x0688659d5e36896da7e5d44ebe3e10aa9d2c9968",
-      "principalAmount": "1000000000000000000",
-      "principalToken": "0xd0a1e359811322d97991e03f863a0c30c2cf029c",
-      "debtor": "0x431194c3e0f35bc7f1266ec6bb85e0c5ec554935",
-      "debtorFee": "0",
-      "creditor": "0x0000000000000000000000000000000000000000",
-      "creditorFee": "0",
-      "relayer": "0x0000000000000000000000000000000000000000",
-      "relayerFee": "0",
-      "underwriter": "0x0000000000000000000000000000000000000000",
-      "underwriterFee": "0",
-      "underwriterRiskRating": "0",
-      "termsContract": "0x13763cf3eb3b6813fa800d4935725a0504c8eb8f",
-      "termsContractParameters": "0x04000000000de0b6b3a7640000004e20200010100000001bc16d674ec8000000",
-      "expirationTimestampInSec": "1532822112",
-      "salt": "37348172497618621185",
-      "debtorSignature": {
-        "v": 27,
-        "r": "0x8d7a2ffefb6915f7dba8a15201270531bd67bd9e708c0ea225e692a6d603f1d3",
-        "s": "0x6b5ef76a2737d648f6bbf1898c1747fc559a93cb0e2f6ed4cd2f33771e476811"
-      },
-      "creditorSignature": {
-        "r": "",
-        "s": "",
-        "v": 0
-      },
-      "underwriterSignature": {
-        "r": "",
-        "s": "",
-        "v": 0
-      },
-      "createdAt": 1532735726060,
-      "id": 1
-    }
   ]
 }
