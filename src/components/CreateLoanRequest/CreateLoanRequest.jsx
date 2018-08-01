@@ -140,6 +140,8 @@ class CreateLoanRequest extends Component {
             debtorAddress,
             expiresInDuration: expirationLength,
             expiresInUnit: expirationUnit,
+            // Here we simplistically make the creditor pay the relayer fee.
+            creditorFeeAmount: relayerFeeAmount,
         });
     }
 
