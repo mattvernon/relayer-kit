@@ -1,14 +1,18 @@
 ![Dharma Relayer Kit](public/dharma_relayer_banner.png)
 
 The Dharma Relayer Kit is the definitive starting point for anyone interested in building a
-business on top of [Dharma Protocol](https://dharma.io/). The Dharma Relayer Kit allows entrepreneurs to focus on their business, not the blockchain.
+business on top of [Dharma Protocol](https://dharma.io/).
 
-The Kit is packed with features:
+The Kit let's anyone become an entrepreneur with the press of a button. No bank account required.
 
-:money_with_wings: Collect real cryptocurrency through relayer fees
-:rocket: Deployable to Heroku out of the box
-:art: Unstyled React components that can be easily branded
-:computer: Only one programming language required: JavaScript
+Features include:
+
+-   :money_with_wings: Collect real cryptocurrency through relayer fees
+-   :rocket: Deploy to Heroku instantly
+-   :art: Build your own brand by adding your own style to the app
+-   :computer: Hack using the world's most accesible programming language: JavaScript
+
+At its core, the Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on your business, and not the blockchain.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
