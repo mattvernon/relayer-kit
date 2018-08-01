@@ -45,17 +45,17 @@ The Kit is packed with features:
 
 Dharma is an open, permissionless protocol that enables anyone to engage in credit-based transactions on the Ethereum blockchain. Read more <a href="https://dharma.io/" target="_blank">here</a>.
 
-## What is a Dharma relayer?
+## What is a Dharma Relayer?
 
-A relayer is a source of liquidity on the Dharma network. It connects borrowers with lenders.
+A Relayer is a source of liquidity on the Dharma network. It connects borrowers with lenders.
 
 You can think of it as a bulletin board where individuals connected on the Internet can post requests to borrow money.
 
-## Why start a Dharma relayer?
+## Why start a Dharma Relayer?
 
 We imagine a world in which the majority of financial transactions occur on globally accessible blockchains.
 
-In this new world, being a relayer is akin to an early internet entrepreneur, providing a valuable service on the frontiers of the new economy.
+In this new world, being a Relayer is akin to an early internet entrepreneur, providing a valuable service on the frontiers of the new economy.
 
 ## What is the approval process for becoming a Dharma Relayer?
 
@@ -63,7 +63,7 @@ There is no approval process for launching a Dharma Relayer. You can launch when
 
 ## What technical skills are required to operate a Dharma Relayer?
 
-Nothing outside of the traditional web stack. The only programming language necessary is JavaScript.
+To build a Relayer, the only programming language necessary is JavaScript.
 
 ## Do I need to conform to any specific branding when launching a Dharma relayer?
 
