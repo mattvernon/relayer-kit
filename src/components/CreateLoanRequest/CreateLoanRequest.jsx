@@ -8,7 +8,9 @@ import {
     FormControl,
     FormGroup,
     InputGroup,
+    HelpBlock,
 } from "react-bootstrap";
+
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
@@ -53,7 +55,7 @@ class CreateLoanRequest extends Component {
 
         const relayer = await api.get("relayerAddress");
 
-        this.setState({ relayer });
+        this.setState({ relayer: relayer.address });
     }
 
     async getRelayerFee(newPrincipalAmount) {

@@ -90,8 +90,9 @@ class LoanRequest extends Component {
 
         const owner = await dharma.blockchain.getCurrentAccount();
 
-        const allowance = new Allowance(dharma, owner, loanRequest.principalTokenSymbol);
+        const terms = loanRequest.getTerms();
 
+        const allowance = new Allowance(dharma, owner, terms.principalTokenSymbol);
         const txHash = await allowance.makeUnlimitedIfNecessary();
 
         if (txHash) {

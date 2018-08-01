@@ -6,6 +6,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 // Styling
 import "./Investments.css";
 import Title from "../Title/Title";
+import Loading from "../Loading/Loading";
 
 const columns = [
     {
@@ -39,7 +40,7 @@ class Investments extends React.Component {
         super(props);
 
         this.state = {
-            investments: [],
+            investments: null,
         };
 
         this.getData = this.getData.bind(this);
@@ -62,6 +63,10 @@ class Investments extends React.Component {
     getData() {
         const { investments } = this.state;
 
+        if (!investments) {
+            return null;
+        }
+
         return investments.map((investment) => {
             return {
                 ...investment,
@@ -79,11 +84,19 @@ class Investments extends React.Component {
     render() {
         const data = this.getData();
 
+        if (!data) {
+            return <Loading />;
+        }
+
         return (
             <div className="Investments">
                 <Title>Your Investments</Title>
 
-                <BootstrapTable keyField="id" columns={columns} data={data} />
+                {
+                    data
+                        ? <BootstrapTable keyField="id" columns={columns} data={data} />
+                        : <Loading/>
+                }
             </div>
         );
     }
