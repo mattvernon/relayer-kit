@@ -40,7 +40,8 @@ class CreateLoanRequest extends Component {
             interestRate: 0,
             termLength: 0,
             termUnit: "weeks",
-            expirationLength: 0,
+            // Default the expiration to 30 days.
+            expirationLength: 30,
             expirationUnit: "days",
             disabled: false,
             error: null,
