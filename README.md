@@ -57,6 +57,10 @@ We imagine a world in which the majority of financial transactions occur on glob
 
 In this new world, being a Relayer is akin to an early internet entrepreneur, providing a valuable service on the frontiers of the new economy.
 
+## How does a Dharma Relayer generate revenue?
+
+Relayers earn a fee everytime a loan is filled on their site. The fee is some percentage of the principal amount as determined by the Relayer. Once the loan has been recorded on the blockchain, the protocol transfers the fee to the Relayer's address.
+
 ## What is the approval process for becoming a Dharma Relayer?
 
 There is no approval process for launching a Dharma Relayer. You can launch whenever you want. Dharma is **live** on the Ethereum mainnet.
