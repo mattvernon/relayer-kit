@@ -34,8 +34,8 @@ class CreateLoanRequest extends Component {
             principal: 0,
             principalTokenSymbol: "WETH",
             collateral: 0,
-            relayerFee: 0,
-            relayer: null,
+            relayerFeeAmount: 0,
+            relayerAddress: null,
             collateralTokenSymbol: "REP",
             interestRate: 0,
             termLength: 0,
@@ -55,7 +55,7 @@ class CreateLoanRequest extends Component {
 
         const relayer = await api.get("relayerAddress");
 
-        this.setState({ relayer: relayer.address });
+        this.setState({ relayerAddress: relayer.address });
     }
 
     async getRelayerFee(newPrincipalAmount) {
@@ -117,14 +117,14 @@ class CreateLoanRequest extends Component {
             principal,
             principalTokenSymbol,
             collateralTokenSymbol,
-            relayerFee,
+            relayerAddress,
+            relayerFeeAmount,
             collateral,
             termUnit,
             expirationUnit,
             expirationLength,
             interestRate,
             termLength,
-            relayer,
         } = this.state;
 
         return LoanRequest.create(dharma, {
@@ -133,8 +133,8 @@ class CreateLoanRequest extends Component {
             collateralAmount: collateral,
             collateralToken: collateralTokenSymbol,
             interestRate,
-            relayerFee,
-            relayer,
+            relayerFeeAmount,
+            relayerAddress,
             termDuration: termLength,
             termUnit,
             debtorAddress,
@@ -153,9 +153,9 @@ class CreateLoanRequest extends Component {
             // relayer fee has been updated.
             this.setState({ disabled: true });
 
-            this.getRelayerFee(value).then((relayerFee) => {
+            this.getRelayerFee(value).then((relayerFeeAmount) => {
                 this.setState({
-                    relayerFee,
+                    relayerFeeAmount,
                     disabled: false,
                 });
             });
@@ -177,7 +177,7 @@ class CreateLoanRequest extends Component {
             principal,
             principalTokenSymbol,
             collateral,
-            relayerFee,
+            relayerFeeAmount,
             collateralTokenSymbol,
             termUnit,
             termLength,
@@ -317,8 +317,8 @@ class CreateLoanRequest extends Component {
                                     <FormControl
                                         type="number"
                                         placeholder="Relayer fee"
-                                        name="relayerFee"
-                                        value={relayerFee}
+                                        name="relayerFeeAmount"
+                                        value={relayerFeeAmount}
                                         readOnly
                                     />
                                     <InputGroup.Addon>{principalTokenSymbol}</InputGroup.Addon>
