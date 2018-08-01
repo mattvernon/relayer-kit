@@ -1,33 +1,41 @@
-![Dharma Relayer Starter Kit](public/dharma_relayer_banner.png)
+![Dharma Relayer Kit](public/dharma_relayer_banner.png)
 
-This repo contains starter code to boot up a Dharma Relayer.
+The Dharma Relayer Kit is the definitive starting point for anyone interested in building a
+business on top of [Dharma Protocol](https://dharma.io/).
+
+The Dharma Relayer Kit allows entrepreneurs to focus on their business, not the blockchain.
+
+The Kit is packed with features:
+
+-   :money_with_wings: Collect real cryptocurrency through relayer fees
+-   :rocket: Deployable to Heroku out of the box
+-   :art: Unstyled React components that can be easily branded
+-   :computer: Only one programming language required: JavaScript
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-- [FAQ](#faq)
-  - [What is Dharma?](#what-is-dharma)
-  - [What is a Dharma relayer?](#what-is-a-dharma-relayer)
-  - [Why start a Dharma relayer?](#why-start-a-dharma-relayer)
-  - [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
-  - [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
-  - [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
-- [What's included?](#whats-included)
-- [Getting Started](#getting-started)
-  - [Clone](#clone)
-  - [Dependencies](#dependencies)
-  - [Blockchain](#blockchain)
-  - [Backend](#backend)
-  - [Frontend](#frontend)
-- [Running on Kovan](#running-on-kovan)
-  - [Backend](#backend-1)
-  - [Frontend](#frontend-1)
-- [Deployment](#deployment)
-  - [Create a new Heroku app:](#create-a-new-heroku-app)
-  - [Set which network you want to deploy to:](#set-which-network-you-want-to-deploy-to)
-  - [Overwrite the app's files with your relayer kit:](#overwrite-the-apps-files-with-your-relayer-kit)
-  - [Open your new relayer on Heroku:](#open-your-new-relayer-on-heroku)
+-   [FAQ](#faq)
+    -   [What is Dharma?](#what-is-dharma)
+    -   [What is a Dharma relayer?](#what-is-a-dharma-relayer)
+    -   [Why start a Dharma relayer?](#why-start-a-dharma-relayer)
+    -   [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
+    -   [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
+    -   [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
+-   [Getting Started](#getting-started)
+    -   [Clone](#clone)
+    -   [Dependencies](#dependencies)
+    -   [Blockchain](#blockchain)
+    -   [Backend](#backend)
+    -   [Frontend](#frontend)
+-   [Running on Kovan](#running-on-kovan)
+    -   [Backend](#backend-1)
+    -   [Frontend](#frontend-1)
+-   [Deployment](#deployment)
+    -   [Create a new Heroku app:](#create-a-new-heroku-app)
+    -   [Set which network you want to deploy to:](#set-which-network-you-want-to-deploy-to)
+    -   [Overwrite the app's files with your relayer kit:](#overwrite-the-apps-files-with-your-relayer-kit)
+    -   [Open your new relayer on Heroku:](#open-your-new-relayer-on-heroku)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -59,25 +67,13 @@ Nothing outside of the traditional web stack. The only programming language nece
 
 ## Do I need to conform to any specific branding when launching a Dharma relayer?
 
-No, we intentionally created this starter kit without branding so that you, the entrepreneur, can conceive of and implement your own brand.
+In designing the Relayer Kit, we intentionally left out any opinionated branding so that you, the entrepreneur, can conceive of and implement your own brand.
 
 We imagine there being many relayers &mdash; each differentiated by the market they serve and the brand they build.
 
-# What's included?
-
-The Relayer Starter Kit is packed with features that allow you to focus on your business.
-
--   Extensible React app
--   Unstyled components that can be easily branded
--   Local blockchain with the Dharma smart contracts pre-loaded
--   Kovan and mainnet ready
--   Deployable to Heroku out of the box
-
-Ideas? Feedback? We want to hear from you! Email us at <mailto:support@dharma.io>.
-
 # Getting Started
 
-We made getting started fast, simple and fun. No fiddling with blockchains required.
+We made getting started fast, simple and fun.
 
 ## Clone
 
@@ -142,13 +138,17 @@ Everything you need to deploy to Heroku is baked into this repo.
 In your command line, make sure you're logged into heroku, and then enter the following commands:
 
 ## Create a new Heroku app:
+
 `heroku create`
 
 ## Set which network you want to deploy to:
+
 `heroku config:set NETWORK=kovan`
 
 ## Overwrite the app's files with your relayer kit:
+
 `git push -f heroku master`
 
 ## Open your new relayer on Heroku:
+
 `heroku open`
