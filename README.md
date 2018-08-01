@@ -15,65 +15,31 @@ The Kit is packed with features:
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
--   [FAQ](#faq)
-    -   [What is Dharma?](#what-is-dharma)
-    -   [What is a Dharma relayer?](#what-is-a-dharma-relayer)
-    -   [Why start a Dharma relayer?](#why-start-a-dharma-relayer)
-    -   [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
-    -   [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
-    -   [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
--   [Getting Started](#getting-started)
-    -   [Clone](#clone)
-    -   [Dependencies](#dependencies)
-    -   [Blockchain](#blockchain)
-    -   [Backend](#backend)
-    -   [Frontend](#frontend)
--   [Running on Kovan](#running-on-kovan)
-    -   [Backend](#backend-1)
-    -   [Frontend](#frontend-1)
--   [Deployment](#deployment)
-    -   [Create a new Heroku app:](#create-a-new-heroku-app)
-    -   [Set which network you want to deploy to:](#set-which-network-you-want-to-deploy-to)
-    -   [Overwrite the app's files with your relayer kit:](#overwrite-the-apps-files-with-your-relayer-kit)
-    -   [Open your new relayer on Heroku:](#open-your-new-relayer-on-heroku)
+
+- [Getting Started](#getting-started)
+  - [Clone](#clone)
+  - [Dependencies](#dependencies)
+  - [Blockchain](#blockchain)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+- [Running on Kovan](#running-on-kovan)
+  - [Backend](#backend-1)
+  - [Frontend](#frontend-1)
+- [Deployment](#deployment)
+  - [Create a new Heroku app:](#create-a-new-heroku-app)
+  - [Set which network you want to deploy to:](#set-which-network-you-want-to-deploy-to)
+  - [Overwrite the app's files with your relayer kit:](#overwrite-the-apps-files-with-your-relayer-kit)
+  - [Open your new relayer on Heroku:](#open-your-new-relayer-on-heroku)
+- [FAQ](#faq)
+  - [What is Dharma?](#what-is-dharma)
+  - [What is a Dharma Relayer?](#what-is-a-dharma-relayer)
+  - [Why start a Dharma Relayer?](#why-start-a-dharma-relayer)
+  - [How does a Dharma Relayer generate revenue?](#how-does-a-dharma-relayer-generate-revenue)
+  - [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
+  - [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
+  - [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# FAQ
-
-## What is Dharma?
-
-Dharma is an open, permissionless protocol that enables anyone to engage in credit-based transactions on the Ethereum blockchain. Read more <a href="https://dharma.io/" target="_blank">here</a>.
-
-## What is a Dharma Relayer?
-
-A Relayer is a source of liquidity on the Dharma network. It connects borrowers with lenders.
-
-You can think of it as a bulletin board where individuals connected on the Internet can post requests to borrow money.
-
-## Why start a Dharma Relayer?
-
-We imagine a world in which the majority of financial transactions occur on globally accessible blockchains.
-
-In this new world, being a Relayer is akin to an early internet entrepreneur, providing a valuable service on the frontiers of the new economy.
-
-## How does a Dharma Relayer generate revenue?
-
-Relayers earn a fee everytime a loan is filled on their site. The fee is some percentage of the principal amount as determined by the Relayer. Once the loan has been recorded on the blockchain, the protocol transfers the fee to the Relayer's address.
-
-## What is the approval process for becoming a Dharma Relayer?
-
-There is no approval process for launching a Dharma Relayer. You can launch whenever you want. Dharma is **live** on the Ethereum mainnet.
-
-## What technical skills are required to operate a Dharma Relayer?
-
-To build a Relayer, the only programming language necessary is JavaScript.
-
-## Do I need to conform to any specific branding when launching a Dharma relayer?
-
-In designing the Relayer Kit, we intentionally left out any opinionated branding so that you, the entrepreneur, can conceive of and implement your own brand.
-
-We imagine there being many relayers &mdash; each differentiated by the market they serve and the brand they build.
 
 # Getting Started
 
@@ -156,3 +122,39 @@ In your command line, make sure you're logged into heroku, and then enter the fo
 ## Open your new relayer on Heroku:
 
 `heroku open`
+
+# FAQ
+
+## What is Dharma?
+
+Dharma is an open, permissionless protocol that enables anyone to engage in credit-based transactions on the Ethereum blockchain. Read more <a href="https://dharma.io/" target="_blank">here</a>.
+
+## What is a Dharma Relayer?
+
+A Relayer is a source of liquidity on the Dharma network. It connects borrowers with lenders.
+
+You can think of it as a bulletin board where individuals connected on the Internet can post requests to borrow money.
+
+## Why start a Dharma Relayer?
+
+We imagine a world in which the majority of financial transactions occur on globally accessible blockchains.
+
+In this new world, being a Relayer is akin to an early internet entrepreneur, providing a valuable service on the frontiers of the new economy.
+
+## How does a Dharma Relayer generate revenue?
+
+Relayers earn a fee everytime a loan is filled on their site. The fee is some percentage of the principal amount as determined by the Relayer. Once the loan has been recorded on the blockchain, the protocol transfers the fee to the Relayer's address.
+
+## What is the approval process for becoming a Dharma Relayer?
+
+There is no approval process for launching a Dharma Relayer. You can launch whenever you want. Dharma is **live** on the Ethereum mainnet today.
+
+## What technical skills are required to operate a Dharma Relayer?
+
+To build a Relayer, the only programming language necessary is JavaScript.
+
+## Do I need to conform to any specific branding when launching a Dharma relayer?
+
+In designing the Relayer Kit, we intentionally left out any opinionated branding so that you, the entrepreneur, can conceive of and implement your own brand.
+
+We imagine there being many relayers &mdash; each differentiated by the market they serve and the brand they build.
