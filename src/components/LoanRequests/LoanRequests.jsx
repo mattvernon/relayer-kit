@@ -25,16 +25,16 @@ const columns = [
         text: "Principal",
     },
     {
+        dataField: "collateral",
+        text: "Collateral",
+    },
+    {
         dataField: "interestRate",
         text: "Interest Rate",
     },
     {
         dataField: "termDuration",
         text: "Term Length",
-    },
-    {
-        dataField: "collateral",
-        text: "Collateral",
     },
     {
         dataField: "expiration",
