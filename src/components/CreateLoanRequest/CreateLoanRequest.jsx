@@ -45,6 +45,7 @@ class CreateLoanRequest extends Component {
             expirationUnit: "days",
             disabled: false,
             error: null,
+            hasSufficientAllowance: null,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -86,6 +87,27 @@ class CreateLoanRequest extends Component {
             console.error(e);
             this.setState({ error: e.message });
         }
+    }
+
+    async setHasSufficientAllowance() {
+        const { dharma } = this.props;
+
+        const { collateralTokenSymbol, collateralAmount } = this.state;
+
+        const { Tokens } = Dharma.Types;
+
+        const currentAccount = await dharma.blockchain.getCurrentAccount();
+
+        const tokens = new Tokens(dharma, currentAccount);
+
+        const tokenData = await tokens.getTokenDataForSymbol(collateralTokenSymbol);
+
+        const hasSufficientAllowance =
+            tokenData.hasUnlimitedAllowance || tokenData.allowance >= collateralAmount;
+
+        this.setState({
+            hasSufficientAllowance,
+        });
     }
 
     async authorizeCollateralTransfer(debtorAddress) {
