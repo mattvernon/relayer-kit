@@ -19,7 +19,7 @@ const middlewares = jsonServer.defaults({
  * This is where you put your address to start receiving fees.
  * @type {string}
  */
-const RELAYER_ADDRESS = "0x0000000000000000000000000000000000000000";
+const RELAYER_ADDRESS = "0x0000000000000000000000000000000000000001";
 
 /**
  * This is an example of a way to set a fee amount per order filled.
