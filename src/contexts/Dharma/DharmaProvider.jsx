@@ -46,6 +46,11 @@ class DharmaProvider extends Component {
     getUserTokens() {
         const { Tokens } = Dharma.Types;
 
+        // Assume the tokens are out of date.
+        this.setState({
+            tokens: [],
+        });
+
         dharma.blockchain.getAccounts().then((accounts) => {
             const owner = accounts[0];
 
