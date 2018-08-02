@@ -77,14 +77,13 @@ class CreateLoanRequest extends Component {
         });
     }
 
-    async createLoanRequest(event) {
-        event.preventDefault();
-
+    async createLoanRequest() {
         const api = new Api();
 
         try {
-            const debtorAddress = await this.getDebtorAddress();
-            const loanRequest = await this.generateLoanRequest(debtorAddress);
+            const { dharma } = this.props;
+            const currentAccount = await dharma.blockchain.getCurrentAccount();
+            const loanRequest = await this.generateLoanRequest(currentAccount);
 
             const id = await api.create("loanRequests", loanRequest.toJSON());
 
@@ -134,13 +133,6 @@ class CreateLoanRequest extends Component {
         this.setState({
             txHash,
         });
-    }
-
-    async getDebtorAddress() {
-        const { dharma } = this.props;
-
-        const debtorAccounts = await dharma.blockchain.getAccounts();
-        return debtorAccounts[0];
     }
 
     async generateLoanRequest(debtorAddress) {
