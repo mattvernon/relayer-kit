@@ -1,7 +1,6 @@
 // External libraries
 import React, { Component } from "react";
 import {
-    Button,
     Col,
     ControlLabel,
     Form,
@@ -14,9 +13,11 @@ import {
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
+import AuthorizableAction from "../AuthorizableAction/AuthorizableAction";
 import Loading from "../Loading/Loading";
 import TimeUnitSelect from "./TimeUnitSelect/TimeUnitSelect";
 import TokenSelect from "./TokenSelect/TokenSelect";
+import TransactionManager from "../TransactionManager/TransactionManager";
 
 // Services
 import Api from "../../services/api";
@@ -45,13 +46,20 @@ class CreateLoanRequest extends Component {
             expirationUnit: "days",
             disabled: false,
             error: null,
+            hasSufficientAllowance: null,
+            txHash: null,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.createLoanRequest = this.createLoanRequest.bind(this);
+
+        this.setHasSufficientAllowance = this.setHasSufficientAllowance.bind(this);
+        this.authorizeCollateralTransfer = this.authorizeCollateralTransfer.bind(this);
     }
 
     async componentDidMount() {
+        this.setHasSufficientAllowance();
+
         const api = new Api();
 
         const relayer = await api.get("relayerAddress");
@@ -69,15 +77,13 @@ class CreateLoanRequest extends Component {
         });
     }
 
-    async createLoanRequest(event) {
-        event.preventDefault();
-
+    async createLoanRequest() {
         const api = new Api();
 
         try {
-            const debtorAddress = await this.getDebtorAddress();
-            const loanRequest = await this.generateLoanRequest(debtorAddress);
-            await this.authorizeCollateralTransfer(debtorAddress);
+            const { dharma } = this.props;
+            const currentAccount = await dharma.blockchain.getCurrentAccount();
+            const loanRequest = await this.generateLoanRequest(currentAccount);
 
             const id = await api.create("loanRequests", loanRequest.toJSON());
 
@@ -88,25 +94,45 @@ class CreateLoanRequest extends Component {
         }
     }
 
-    async authorizeCollateralTransfer(debtorAddress) {
+    async setHasSufficientAllowance(tokenSymbol) {
+        const { dharma } = this.props;
+
+        const { collateralTokenSymbol, collateralAmount } = this.state;
+
+        const symbol = tokenSymbol ? tokenSymbol : collateralTokenSymbol;
+
+        const { Tokens } = Dharma.Types;
+
+        const currentAccount = await dharma.blockchain.getCurrentAccount();
+
+        const tokens = new Tokens(dharma, currentAccount);
+
+        const tokenData = await tokens.getTokenDataForSymbol(symbol);
+
+        const hasSufficientAllowance =
+            tokenData.hasUnlimitedAllowance || tokenData.allowance >= collateralAmount;
+
+        this.setState({
+            hasSufficientAllowance,
+        });
+    }
+
+    async authorizeCollateralTransfer() {
         const { dharma } = this.props;
 
         const { Allowance } = Dharma.Types;
 
         const { collateralTokenSymbol } = this.state;
 
-        const allowance = new Allowance(dharma, debtorAddress, collateralTokenSymbol);
+        const currentAccount = await dharma.blockchain.getCurrentAccount();
 
-        await allowance.makeUnlimitedIfNecessary();
+        const allowance = new Allowance(dharma, currentAccount, collateralTokenSymbol);
 
-        // TODO(kayvon): handle async call to mine transaction if necessary
-    }
+        const txHash = await allowance.makeUnlimitedIfNecessary();
 
-    async getDebtorAddress() {
-        const { dharma } = this.props;
-
-        const debtorAccounts = await dharma.blockchain.getAccounts();
-        return debtorAccounts[0];
+        this.setState({
+            txHash,
+        });
     }
 
     async generateLoanRequest(debtorAddress) {
@@ -167,10 +193,18 @@ class CreateLoanRequest extends Component {
         this.setState({
             [name]: value,
         });
+
+        if (name === "collateralTokenSymbol") {
+            this.setState({
+                setHasSufficientAllowance: null,
+            });
+
+            this.setHasSufficientAllowance(value);
+        }
     }
 
     render() {
-        const { tokens } = this.props;
+        const { tokens, dharma } = this.props;
 
         if (tokens.length === 0) {
             return <Loading />;
@@ -189,6 +223,8 @@ class CreateLoanRequest extends Component {
             expirationLength,
             disabled,
             error,
+            hasSufficientAllowance,
+            txHash,
         } = this.state;
 
         const labelWidth = 3;
@@ -200,6 +236,16 @@ class CreateLoanRequest extends Component {
                 <Title>Create a Loan Request</Title>
 
                 {error && <Error title="Unable to create loan request">{error}</Error>}
+
+                {txHash && (
+                    <TransactionManager
+                        key={txHash}
+                        txHash={txHash}
+                        dharma={dharma}
+                        description="Authorize Collateral Transfer"
+                        onSuccess={this.setHasSufficientAllowance}
+                    />
+                )}
 
                 <Col md={7}>
                     <Form horizontal disabled={disabled} onSubmit={this.createLoanRequest}>
@@ -334,9 +380,15 @@ class CreateLoanRequest extends Component {
 
                         <FormGroup>
                             <Col smOffset={labelWidth} sm={10}>
-                                <Button type="submit" bsStyle="primary" disabled={disabled}>
+                                <AuthorizableAction
+                                    canTakeAction={hasSufficientAllowance}
+                                    canAuthorize={
+                                        hasSufficientAllowance !== null && !hasSufficientAllowance
+                                    }
+                                    onAction={this.createLoanRequest}
+                                    onAuthorize={this.authorizeCollateralTransfer}>
                                     Create
-                                </Button>
+                                </AuthorizableAction>
                             </Col>
                         </FormGroup>
                     </Form>

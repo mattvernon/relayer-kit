@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 
 // Styling
-import "./Actions.css";
+import "./AuthorizableAction.css";
 
-class Actions extends Component {
+class AuthorizableAction extends Component {
     handleClick(event, callback) {
         event.preventDefault();
 
@@ -12,7 +12,7 @@ class Actions extends Component {
     }
 
     render() {
-        const { canFill, canAuthorize, onFill, onAuthorize } = this.props;
+        const { canTakeAction, canAuthorize, onAction, onAuthorize } = this.props;
 
         return (
             <div className="Actions">
@@ -20,20 +20,20 @@ class Actions extends Component {
                     onClick={(event) => this.handleClick(event, onAuthorize)}
                     disabled={!canAuthorize}
                     bsStyle="primary"
-                    className="Actions-Authorize">
+                    className="AuthorizableAction-Authorize">
                     Authorize Token Transfer
                 </Button>
 
                 <Button
-                    onClick={(event) => this.handleClick(event, onFill)}
-                    disabled={!canFill}
+                    onClick={(event) => this.handleClick(event, onAction)}
+                    disabled={!canTakeAction}
                     bsStyle="primary"
-                    className="Actions-Fill">
-                    Fill Loan
+                    className="AuthorizableAction-Action">
+                    {this.props.children}
                 </Button>
             </div>
         );
     }
 }
 
-export default Actions;
+export default AuthorizableAction;
