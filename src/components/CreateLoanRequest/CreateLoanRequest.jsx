@@ -18,6 +18,7 @@ import AuthorizableAction from "../AuthorizableAction/AuthorizableAction";
 import Loading from "../Loading/Loading";
 import TimeUnitSelect from "./TimeUnitSelect/TimeUnitSelect";
 import TokenSelect from "./TokenSelect/TokenSelect";
+import TransactionManager from "../TransactionManager/TransactionManager";
 
 // Services
 import Api from "../../services/api";
@@ -47,6 +48,7 @@ class CreateLoanRequest extends Component {
             disabled: false,
             error: null,
             hasSufficientAllowance: null,
+            txHash: null,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -79,7 +81,6 @@ class CreateLoanRequest extends Component {
         try {
             const debtorAddress = await this.getDebtorAddress();
             const loanRequest = await this.generateLoanRequest(debtorAddress);
-            await this.authorizeCollateralTransfer(debtorAddress);
 
             const id = await api.create("loanRequests", loanRequest.toJSON());
 
@@ -120,9 +121,11 @@ class CreateLoanRequest extends Component {
 
         const allowance = new Allowance(dharma, debtorAddress, collateralTokenSymbol);
 
-        await allowance.makeUnlimitedIfNecessary();
+        const txHash = await allowance.makeUnlimitedIfNecessary();
 
-        // TODO(kayvon): handle async call to mine transaction if necessary
+        this.setState({
+            txHash,
+        });
     }
 
     async getDebtorAddress() {
@@ -193,7 +196,7 @@ class CreateLoanRequest extends Component {
     }
 
     render() {
-        const { tokens } = this.props;
+        const { tokens, dharma } = this.props;
 
         if (tokens.length === 0) {
             return <Loading />;
@@ -213,6 +216,7 @@ class CreateLoanRequest extends Component {
             disabled,
             error,
             hasSufficientAllowance,
+            txHash,
         } = this.state;
 
         const labelWidth = 3;
@@ -224,6 +228,16 @@ class CreateLoanRequest extends Component {
                 <Title>Create a Loan Request</Title>
 
                 {error && <Error title="Unable to create loan request">{error}</Error>}
+
+                {txHash && (
+                    <TransactionManager
+                        key={txHash}
+                        txHash={txHash}
+                        dharma={dharma}
+                        description="Authorize Collateral Transfer"
+                        onSuccess={this.setHasSufficientAllowance}
+                    />
+                )}
 
                 <Col md={7}>
                     <Form horizontal disabled={disabled} onSubmit={this.createLoanRequest}>
