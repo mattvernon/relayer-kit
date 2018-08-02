@@ -117,8 +117,8 @@ want to set the environment variables there.
 ## Frontend
 
 When the frontend loads, it will attempt to connect to a local blockchain. If it does not find
-the local blockchain, it will instead try to connect to MetaMask. This means that, to test
-the app against Kovan, Use `yarn start` as usual, turn your local blockchain off and set
+the local blockchain, it will instead try to connect to MetaMask. To test
+the app against Kovan, use `yarn start` as usual, turn your local blockchain off and set
 your MetaMask to Kovan mode.
 
 
