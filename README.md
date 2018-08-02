@@ -1,6 +1,7 @@
 ![Dharma Relayer Kit](public/dharma_relayer_banner.png)
 
-The Dharma Relayer Kit is the definitive starting point for building a business on top of [Dharma Protocol](https://dharma.io/). The Kit lets anyone become a crypto entrepreneur with the press of a button. No bank account required.
+The Dharma Relayer Kit is the definitive starting point for building a business on top of [Dharma Protocol](https://dharma.io/). 
+The Kit lets anyone become a crypto entrepreneur with the press of a button. No bank account required.
 
 Features include:
 
@@ -38,6 +39,8 @@ The Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on y
     -   [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
     -   [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
     -   [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
+-   [Troubleshooting](#troubleshooting)
+    -   [I'm getting an error that blockchain failed to start](#blockchain-failed)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -85,21 +88,42 @@ And launch the React frontend via:
 yarn start
 ```
 
-# Running on Kovan
+# Running on the Kovan Testnet
 
-There is no need for running a local blockchain in this state.
+Kovan is a test blockchain (referred to as a "testnet") for Ethereum contracts. The Dharma team has deployed our contracts to
+the Kovan testnet, so that we, and developers building on top of Dharma, can test our tools and 
+products in a way that is similar to mainnet, but without using real tokens.
+
+To get access to Kovan tokens for testing your relayer, please visit [https://wallet.dharma.io](https://wallet.dharma.io), 
+and set your Metamask to Kovan mode. This will allow you to get Kovan test tokens for Dharma
+contracts.
+
+There is no need for running a local blockchain when developing against a testnet, so we skip
+the step of running a blockchain here.
 
 ## Backend
 
-And launch the server via:
+We use an environment variable to allow the server to specify a different database for your
+Kovan Loan Requests - since Loan Requests for one blockchain will not be valid for another. The environment variable we modify is `NETWORK=kovan` (and
+likewise `NETWORK=mainnet` for mainnet.) An easy way to launch the server in Kovan mode is:
 
-    `yarn kovan-server`
+```
+yarn kovan-server
+```
+
+Note: If you are deploying your server to a hosted environment such as Heroku or AWS, you'll
+want to set the environment variables there.
 
 ## Frontend
 
-And launch the React frontend via:
+Similarly to how the backend server would be configured for Kovan or mainnet, we need to tell
+our react app whether to communicate with our local blockchain or to use Metamask. We do this
+by specifying an environment variable for our react app (`REACT_APP_NETWORK=kovan` or 
+`REACT_APP_NETWORK=mainnet`). An easy way to launch the frontend in Kovan mode is:
 
-    `yarn start-kovan`
+```
+yarn start-kovan
+```
 
 # Deployment
 
@@ -107,19 +131,19 @@ Everything you need to deploy to Heroku is baked into this repo.
 
 In your command line, make sure you're logged into heroku, and then enter the following commands:
 
-## Create a new Heroku app:
+## Create a new Heroku app
+
+If you are logged into Heroku on your command line, you can simply run:
 
 `heroku create`
 
-## Set which network you want to deploy to:
+Otherwise, follow the instructions Heroku provides for [creating a new Heroku app](https://devcenter.heroku.com/articles/creating-apps).
 
-`heroku config:set NETWORK=kovan`
-
-## Overwrite the app's files with your relayer kit:
+## Overwrite the app's files with your relayer kit
 
 `git push -f heroku master`
 
-## Open your new relayer on Heroku:
+## Open your new relayer on Heroku
 
 `heroku open`
 
@@ -158,3 +182,28 @@ To build a Relayer, the only programming language necessary is JavaScript.
 In designing the Relayer Kit, we intentionally left out any opinionated branding so that you, the entrepreneur, can conceive of and implement your own brand.
 
 We imagine there being many relayers &mdash; each differentiated by the market they serve and the brand they build.
+
+# Troubleshooting
+
+You can use this section to debug any problems you might run into while setting up your relayer.
+
+## I'm getting an error that blockchain failed to start
+
+In order to run a local blockchain (via `yarn blockchain`), we use a tool called [Ganache-CLI](https://github.com/trufflesuite/ganache-cli), and we boot it up with all 
+of the Dharma Protocol contracts pre-installed.
+
+This requires that we install Ganache-CLI first, which sometimes requires extra permissions
+(depending on your computer's setup).
+
+Note: There is no strict requirement to use our blockchain setup - if you like, you can do all of your
+development against Kovan, where our contracts are deployed. The preconfigured local blockchain is
+just for quicker development.
+
+If you're having trouble with running the local blockchain, I would consult the Ganache-CLI setup
+page (https://github.com/trufflesuite/ganache-cli) and try to get that running first, and then try running `yarn blockchain` in your relayer
+project again.
+
+If you're comfortable doing so, then to get around the permissions problem you might end up using your 
+computer's "root" permissions to install Ganache-CLI, by running: 
+
+`sudo npm install -g ganache-cli@6.1.3`.
