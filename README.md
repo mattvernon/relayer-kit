@@ -1,6 +1,6 @@
 ![Dharma Relayer Kit](public/dharma_relayer_banner.png)
 
-The Dharma Relayer Kit is the definitive starting point for starting a business on top of [Dharma Protocol](https://dharma.io/). The Kit let's anyone become a crypto entrepreneur with the press of a button. No bank account required.
+The Dharma Relayer Kit is the definitive starting point for building a business on top of [Dharma Protocol](https://dharma.io/). The Kit lets anyone become a crypto entrepreneur with the press of a button. No bank account required.
 
 Features include:
 
