@@ -7,7 +7,7 @@ const network = process.env.REACT_APP_NETWORK;
 
 let dharma;
 
-if (network === "kovan" || network === "mainnet") {
+if (network === "kovan" || network === "mainnet" || process.env.NODE_ENV === 'production') {
     dharma = new Dharma();
 } else {
     // Running against a local blockchain.
