@@ -14,6 +14,7 @@ import {
 import Dharma from "@dharmaprotocol/dharma.js";
 
 // Components
+import AuthorizableAction from "../AuthorizableAction/AuthorizableAction";
 import Loading from "../Loading/Loading";
 import TimeUnitSelect from "./TimeUnitSelect/TimeUnitSelect";
 import TokenSelect from "./TokenSelect/TokenSelect";
@@ -211,6 +212,7 @@ class CreateLoanRequest extends Component {
             expirationLength,
             disabled,
             error,
+            hasSufficientAllowance,
         } = this.state;
 
         const labelWidth = 3;
@@ -356,9 +358,13 @@ class CreateLoanRequest extends Component {
 
                         <FormGroup>
                             <Col smOffset={labelWidth} sm={10}>
-                                <Button type="submit" bsStyle="primary" disabled={disabled}>
+                                <AuthorizableAction
+                                    canTakeAction={!error && hasSufficientAllowance}
+                                    canAuthorize={!hasSufficientAllowance}
+                                    onAction={this.createLoanRequest}
+                                    onAuthorize={this.authorizeCollateralTransfer}>
                                     Create
-                                </Button>
+                                </AuthorizableAction>
                             </Col>
                         </FormGroup>
                     </Form>
