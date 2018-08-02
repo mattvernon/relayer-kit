@@ -104,8 +104,7 @@ the step of running a blockchain here.
 ## Backend
 
 We use an environment variable to allow the server to specify a different database for your
-Kovan Loan Requests (Loan Requests for one blockchain will not be valid for another, since the
-contract addresses are different.) The environment variable we modify is `NETWORK=kovan` (and
+Kovan Loan Requests - since Loan Requests for one blockchain will not be valid for another. The environment variable we modify is `NETWORK=kovan` (and
 likewise `NETWORK=mainnet` for mainnet.) An easy way to launch the server in Kovan mode is:
 
 ```
