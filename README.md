@@ -105,10 +105,10 @@ the step of running a blockchain here.
 
 We use an environment variable to allow the server to specify a different database for your
 Kovan Loan Requests - since Loan Requests for one blockchain will not be valid for another. The environment variable we modify is `NETWORK=kovan` (and
-likewise `NETWORK=mainnet` for mainnet.) An easy way to launch the server in Kovan mode is:
+likewise `NETWORK=mainnet` for mainnet.) An example of running this on your command line would be:
 
 ```
-yarn kovan-server
+NEWORK=kovan yarn server
 ```
 
 Note: If you are deploying your server to a hosted environment such as Heroku or AWS, you'll
@@ -119,10 +119,10 @@ want to set the environment variables there.
 Similarly to how the backend server would be configured for Kovan or mainnet, we need to tell
 our react app whether to communicate with our local blockchain or to use Metamask. We do this
 by specifying an environment variable for our react app (`REACT_APP_NETWORK=kovan` or 
-`REACT_APP_NETWORK=mainnet`). An easy way to launch the frontend in Kovan mode is:
-
+`REACT_APP_NETWORK=mainnet`). An example of running this on your command line would be:
+                              
 ```
-yarn start-kovan
+REACT_APP_NETWORK=kovan yarn start
 ```
 
 # Deployment
