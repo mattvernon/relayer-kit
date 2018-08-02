@@ -98,7 +98,7 @@ To get access to Kovan tokens for testing your relayer, please visit [https://wa
 and set your Metamask to Kovan mode. This will allow you to get Kovan test tokens for Dharma
 contracts.
 
-There is no need for running a local blockchain when developing again a testnet, so we skip
+There is no need for running a local blockchain when developing against a testnet, so we skip
 the step of running a blockchain here.
 
 ## Backend
@@ -131,15 +131,19 @@ Everything you need to deploy to Heroku is baked into this repo.
 
 In your command line, make sure you're logged into heroku, and then enter the following commands:
 
-## Create a new Heroku app:
+## Create a new Heroku app
+
+If you are logged into Heroku on your command line, you can simply run:
 
 `heroku create`
 
-## Overwrite the app's files with your relayer kit:
+Otherwise, follow the instructions Heroku provides for [creating a new Heroku app](https://devcenter.heroku.com/articles/creating-apps).
+
+## Overwrite the app's files with your relayer kit
 
 `git push -f heroku master`
 
-## Open your new relayer on Heroku:
+## Open your new relayer on Heroku
 
 `heroku open`
 
