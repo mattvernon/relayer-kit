@@ -7,6 +7,7 @@ let dharma;
 // Try running against a local blockchain.
 dharma = new Dharma("http://localhost:8545");
 if (!dharma.web3.isConnected()) {
+    // If Dharma couldn't connect to the local chain, connect to MetaMask.
     dharma = new Dharma();
 }
 
