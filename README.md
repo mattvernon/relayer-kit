@@ -72,6 +72,8 @@ And launch a local blockchain via:
 yarn blockchain
 ```
 
+Note: To connect your app to MetaMask, simply skip this step.
+
 ## Backend
 
 And launch the server via:
