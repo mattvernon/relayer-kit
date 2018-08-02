@@ -72,6 +72,8 @@ And launch a local blockchain via:
 yarn blockchain
 ```
 
+Note: To connect your app to MetaMask, simply skip this step.
+
 ## Backend
 
 And launch the server via:
@@ -116,14 +118,11 @@ want to set the environment variables there.
 
 ## Frontend
 
-Similarly to how the backend server would be configured for Kovan or mainnet, we need to tell
-our react app whether to communicate with our local blockchain or to use Metamask. We do this
-by specifying an environment variable for our react app (`REACT_APP_NETWORK=kovan` or 
-`REACT_APP_NETWORK=mainnet`). An example of running this on your command line would be:
-                              
-```
-REACT_APP_NETWORK=kovan yarn start
-```
+When the frontend loads, it will attempt to connect to a local blockchain. If it does not find
+the local blockchain, it will instead try to connect to MetaMask. To test
+the app against Kovan, use `yarn start` as usual, turn your local blockchain off and set
+your MetaMask to Kovan mode.
+
 
 # Deployment
 

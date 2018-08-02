@@ -3,15 +3,12 @@ import Dharma from "@dharmaprotocol/dharma.js";
 
 import DharmaContext from "./DharmaContext";
 
-const network = process.env.REACT_APP_NETWORK;
-
 let dharma;
-
-if (network === "kovan" || network === "mainnet" || process.env.NODE_ENV === "production") {
+// Try running against a local blockchain.
+dharma = new Dharma("http://localhost:8545");
+if (!dharma.web3.isConnected()) {
+    // If Dharma couldn't connect to the local chain, connect to MetaMask.
     dharma = new Dharma();
-} else {
-    // Running against a local blockchain.
-    dharma = new Dharma("http://localhost:8545");
 }
 
 /**
