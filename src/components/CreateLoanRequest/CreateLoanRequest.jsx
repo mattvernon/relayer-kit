@@ -1,7 +1,6 @@
 // External libraries
 import React, { Component } from "react";
 import {
-    Button,
     Col,
     ControlLabel,
     Form,
@@ -59,6 +58,8 @@ class CreateLoanRequest extends Component {
     }
 
     async componentDidMount() {
+        this.setHasSufficientAllowance();
+
         const api = new Api();
 
         const relayer = await api.get("relayerAddress");
@@ -94,10 +95,12 @@ class CreateLoanRequest extends Component {
         }
     }
 
-    async setHasSufficientAllowance() {
+    async setHasSufficientAllowance(tokenSymbol) {
         const { dharma } = this.props;
 
         const { collateralTokenSymbol, collateralAmount } = this.state;
+
+        const symbol = tokenSymbol ? tokenSymbol : collateralTokenSymbol;
 
         const { Tokens } = Dharma.Types;
 
@@ -105,7 +108,7 @@ class CreateLoanRequest extends Component {
 
         const tokens = new Tokens(dharma, currentAccount);
 
-        const tokenData = await tokens.getTokenDataForSymbol(collateralTokenSymbol);
+        const tokenData = await tokens.getTokenDataForSymbol(symbol);
 
         const hasSufficientAllowance =
             tokenData.hasUnlimitedAllowance || tokenData.allowance >= collateralAmount;
@@ -115,14 +118,16 @@ class CreateLoanRequest extends Component {
         });
     }
 
-    async authorizeCollateralTransfer(debtorAddress) {
+    async authorizeCollateralTransfer() {
         const { dharma } = this.props;
 
         const { Allowance } = Dharma.Types;
 
         const { collateralTokenSymbol } = this.state;
 
-        const allowance = new Allowance(dharma, debtorAddress, collateralTokenSymbol);
+        const currentAccount = await dharma.blockchain.getCurrentAccount();
+
+        const allowance = new Allowance(dharma, currentAccount, collateralTokenSymbol);
 
         const txHash = await allowance.makeUnlimitedIfNecessary();
 
@@ -196,6 +201,14 @@ class CreateLoanRequest extends Component {
         this.setState({
             [name]: value,
         });
+
+        if (name === "collateralTokenSymbol") {
+            this.setState({
+                setHasSufficientAllowance: null,
+            });
+
+            this.setHasSufficientAllowance(value);
+        }
     }
 
     render() {
@@ -376,8 +389,10 @@ class CreateLoanRequest extends Component {
                         <FormGroup>
                             <Col smOffset={labelWidth} sm={10}>
                                 <AuthorizableAction
-                                    canTakeAction={!error && hasSufficientAllowance}
-                                    canAuthorize={!hasSufficientAllowance}
+                                    canTakeAction={hasSufficientAllowance}
+                                    canAuthorize={
+                                        hasSufficientAllowance !== null && !hasSufficientAllowance
+                                    }
                                     onAction={this.createLoanRequest}
                                     onAuthorize={this.authorizeCollateralTransfer}>
                                     Create
