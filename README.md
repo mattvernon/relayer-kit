@@ -111,7 +111,8 @@ likewise `NETWORK=mainnet` for mainnet.) An easy way to launch the server in Kov
 yarn kovan-server
 ```
 
-Note: If you are deploying your server to 
+Note: If you are deploying your server to a hosted environment such as Heroku or AWS, you'll
+want to set the environment variables there.
 
 ## Frontend
 
@@ -133,10 +134,6 @@ In your command line, make sure you're logged into heroku, and then enter the fo
 ## Create a new Heroku app:
 
 `heroku create`
-
-## Set which network you want to deploy to:
-
-`heroku config:set NETWORK=kovan`
 
 ## Overwrite the app's files with your relayer kit:
 
