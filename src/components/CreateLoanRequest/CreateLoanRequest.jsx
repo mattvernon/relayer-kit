@@ -53,6 +53,9 @@ class CreateLoanRequest extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.createLoanRequest = this.createLoanRequest.bind(this);
+
+        this.setHasSufficientAllowance = this.setHasSufficientAllowance.bind(this);
+        this.authorizeCollateralTransfer = this.authorizeCollateralTransfer.bind(this);
     }
 
     async componentDidMount() {
