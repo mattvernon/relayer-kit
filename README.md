@@ -105,6 +105,12 @@ the step of running a blockchain here.
 
 ## Backend
 
+First, build a "production" version of your app using:
+
+```
+yarn build
+```
+
 We use an environment variable to allow the server to specify a different database for your
 Kovan Loan Requests - since Loan Requests for one blockchain will not be valid for another. The environment variable we modify is `NETWORK=kovan` (and
 likewise `NETWORK=mainnet` for mainnet.) An example of running this on your command line would be:
@@ -113,16 +119,15 @@ likewise `NETWORK=mainnet` for mainnet.) An example of running this on your comm
 NEWORK=kovan yarn server
 ```
 
-Note: If you are deploying your server to a hosted environment such as Heroku or AWS, you'll
-want to set the environment variables there.
+This will run a server on port 8000, including your production app. 
+Visit your app on this server by visiting [http://localhost:8000](http://localhost:8000).
+
+Note: Changes you make to your app won't be reflected immediate when developing in this state.
+You need to rebuild your app and then restart your server to see changes. 
 
 ## Frontend
 
-When the frontend loads, it will attempt to connect to a local blockchain. If it does not find
-the local blockchain, it will instead try to connect to MetaMask. To test
-the app against Kovan, use `yarn start` as usual, turn your local blockchain off and set
-your MetaMask to Kovan mode.
-
+We won't run a separate frontend when testing against a testnet.
 
 # Deployment
 

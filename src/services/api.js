@@ -1,6 +1,8 @@
+const defaultAPI = process.env.REACT_APP_API_SERVER || "";
+
 class Api {
     constructor(apiUrl) {
-        this.apiUrl = apiUrl || "";
+        this.apiUrl = apiUrl || defaultAPI;
     }
 
     /**
