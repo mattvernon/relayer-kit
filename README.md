@@ -8,7 +8,7 @@ Getting started is simple:
 
 -   👩‍💻 Fork the repo
 -   🎨 Define your own style with our unopinionated React components
--   🚀 Deploy to He roku
+-   🚀 Deploy to Heroku
 -   💸 Collect real cryptocurrency through relayer fees
 
 The Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on your business, and not the blockchain.
@@ -31,6 +31,8 @@ The Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on y
     -   [Create a new Heroku app](#create-a-new-heroku-app)
     -   [Overwrite the app's files with your relayer kit](#overwrite-the-apps-files-with-your-relayer-kit)
     -   [Open your new relayer on Heroku](#open-your-new-relayer-on-heroku)
+-   [Troubleshooting](#troubleshooting)
+    -   [I'm getting an error that blockchain failed to start](#im-getting-an-error-that-blockchain-failed-to-start)
 -   [FAQ](#faq)
     -   [What is Dharma?](#what-is-dharma)
     -   [What is a Dharma Relayer?](#what-is-a-dharma-relayer)
@@ -41,8 +43,6 @@ The Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on y
     -   [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
     -   [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
     -   [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
--   [Troubleshooting](#troubleshooting)
-    -   [I'm getting an error that blockchain failed to start](#im-getting-an-error-that-blockchain-failed-to-start)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -153,6 +153,31 @@ Otherwise, follow the instructions Heroku provides for [creating a new Heroku ap
 
 `heroku open`
 
+# Troubleshooting
+
+You can use this section to debug any problems you might run into while setting up your relayer.
+
+## I'm getting an error that blockchain failed to start
+
+In order to run a local blockchain (via `yarn blockchain`), we use a tool called [Ganache-CLI](https://github.com/trufflesuite/ganache-cli), and we boot it up with all
+of the Dharma Protocol contracts pre-installed.
+
+This requires that we install Ganache-CLI first, which sometimes requires extra permissions
+(depending on your computer's setup).
+
+Note: There is no strict requirement to use our blockchain setup - if you like, you can do all of your
+development against Kovan, where our contracts are deployed. The preconfigured local blockchain is
+just for quicker development.
+
+If you're having trouble with running the local blockchain, I would consult the Ganache-CLI setup
+page (https://github.com/trufflesuite/ganache-cli) and try to get that running first, and then try running `yarn blockchain` in your relayer
+project again.
+
+If you're comfortable doing so, then to get around the permissions problem you might end up using your
+computer's "root" permissions to install Ganache-CLI, by running:
+
+`sudo npm install -g ganache-cli@6.1.3`.
+
 # FAQ
 
 ## What is Dharma?
@@ -181,11 +206,11 @@ While starting a Relayer is an intrepid task, you won't be alone. [Bloqboard](ht
 
 ## Are all Dharma Relayers the same?
 
-We envision the Dharma ecosystem supporting many relayers &mdash; with individual relayers developing brands associated with their particular area of focus or domain expertise.
+We envision the Dharma ecosystem supporting many relayers &mdash; with individual relayers developing brands associated with their particular area of focus or domain expertise.
 
 For example, a Relayer could specialize in micro-finance, venture debt, or margin trading.
 
-While these markets might be modest today - over time, more and more financial transactions will take place on the blockchain, offering more and more opportunity for Relayers to grow their businesses.
+While these markets might be modest today &mdash; over time, more and more financial transactions will take place on the blockchain, offering more and more opportunity for Relayers to grow their businesses.
 
 ## What is the approval process for becoming a Dharma Relayer?
 
@@ -199,29 +224,4 @@ To build a Relayer, the only programming language necessary is JavaScript.
 
 In designing the Relayer Kit, we intentionally left out any opinionated branding so that you, the entrepreneur, can conceive of and implement your own brand.
 
-We imagine there being many relayers &mdash; each differentiated by the market they serve and the brand they build.
-
-# Troubleshooting
-
-You can use this section to debug any problems you might run into while setting up your relayer.
-
-## I'm getting an error that blockchain failed to start
-
-In order to run a local blockchain (via `yarn blockchain`), we use a tool called [Ganache-CLI](https://github.com/trufflesuite/ganache-cli), and we boot it up with all
-of the Dharma Protocol contracts pre-installed.
-
-This requires that we install Ganache-CLI first, which sometimes requires extra permissions
-(depending on your computer's setup).
-
-Note: There is no strict requirement to use our blockchain setup - if you like, you can do all of your
-development against Kovan, where our contracts are deployed. The preconfigured local blockchain is
-just for quicker development.
-
-If you're having trouble with running the local blockchain, I would consult the Ganache-CLI setup
-page (https://github.com/trufflesuite/ganache-cli) and try to get that running first, and then try running `yarn blockchain` in your relayer
-project again.
-
-If you're comfortable doing so, then to get around the permissions problem you might end up using your
-computer's "root" permissions to install Ganache-CLI, by running:
-
-`sudo npm install -g ganache-cli@6.1.3`.
+We imagine there being many relayers, each differentiated by the market they serve and the brand they build.
