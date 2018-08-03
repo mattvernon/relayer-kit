@@ -1,14 +1,15 @@
 ![Dharma Relayer Kit](public/dharma_relayer_banner.png)
 
-The Dharma Relayer Kit is the definitive starting point for building a business on top of [Dharma Protocol](https://dharma.io/). 
+The Dharma Relayer Kit is the definitive starting point for building a business on top of [Dharma Protocol](https://dharma.io/).
+
 The Kit lets anyone become a crypto entrepreneur with the press of a button. No bank account required.
 
-Features include:
+Getting started is simple:
 
--   :money_with_wings: Collect real cryptocurrency through relayer fees
--   :rocket: Deploy to Heroku instantly
--   :art: Define your own style with our unopinionated React components
--   :computer: Hack using the world's most accessible programming language: JavaScript
+-   👩‍💻 Fork the repo
+-   🎨 Define your own style with our unopinionated React components
+-   🚀 Deploy to He roku
+-   💸 Collect real cryptocurrency through relayer fees
 
 The Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on your business, and not the blockchain.
 
@@ -93,10 +94,10 @@ yarn start
 # Running on the Kovan Testnet
 
 Kovan is a test blockchain (referred to as a "testnet") for Ethereum contracts. The Dharma team has deployed our contracts to
-the Kovan testnet, so that we, and developers building on top of Dharma, can test our tools and 
+the Kovan testnet, so that we, and developers building on top of Dharma, can test our tools and
 products in a way that is similar to mainnet, but without using real tokens.
 
-To get access to Kovan tokens for testing your relayer, please visit [https://wallet.dharma.io](https://wallet.dharma.io), 
+To get access to Kovan tokens for testing your relayer, please visit [https://wallet.dharma.io](https://wallet.dharma.io),
 and set your Metamask to Kovan mode. This will allow you to get Kovan test tokens for Dharma
 contracts.
 
@@ -122,7 +123,6 @@ When the frontend loads, it will attempt to connect to a local blockchain. If it
 the local blockchain, it will instead try to connect to MetaMask. To test
 the app against Kovan, use `yarn start` as usual, turn your local blockchain off and set
 your MetaMask to Kovan mode.
-
 
 # Deployment
 
@@ -188,7 +188,7 @@ You can use this section to debug any problems you might run into while setting 
 
 ## I'm getting an error that blockchain failed to start
 
-In order to run a local blockchain (via `yarn blockchain`), we use a tool called [Ganache-CLI](https://github.com/trufflesuite/ganache-cli), and we boot it up with all 
+In order to run a local blockchain (via `yarn blockchain`), we use a tool called [Ganache-CLI](https://github.com/trufflesuite/ganache-cli), and we boot it up with all
 of the Dharma Protocol contracts pre-installed.
 
 This requires that we install Ganache-CLI first, which sometimes requires extra permissions
@@ -202,7 +202,7 @@ If you're having trouble with running the local blockchain, I would consult the 
 page (https://github.com/trufflesuite/ganache-cli) and try to get that running first, and then try running `yarn blockchain` in your relayer
 project again.
 
-If you're comfortable doing so, then to get around the permissions problem you might end up using your 
-computer's "root" permissions to install Ganache-CLI, by running: 
+If you're comfortable doing so, then to get around the permissions problem you might end up using your
+computer's "root" permissions to install Ganache-CLI, by running:
 
 `sudo npm install -g ganache-cli@6.1.3`.
