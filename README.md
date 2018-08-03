@@ -2,7 +2,7 @@
 
 The Dharma Relayer Kit is the definitive starting point for building a business on top of [Dharma Protocol](https://dharma.io/).
 
-The Kit lets anyone become a crypto entrepreneur with the press of a button. No bank account required.
+The Relayer Kit lets anyone become a crypto entrepreneur in just a few steps. No bank account required.
 
 Getting started is simple:
 
@@ -24,24 +24,25 @@ The Dharma Relayer Kit allows you &mdash; the entrepreneur &mdash; to focus on y
     -   [Blockchain](#blockchain)
     -   [Backend](#backend)
     -   [Frontend](#frontend)
--   [Running on Kovan](#running-on-kovan)
+-   [Running on the Kovan Testnet](#running-on-the-kovan-testnet)
     -   [Backend](#backend-1)
     -   [Frontend](#frontend-1)
 -   [Deployment](#deployment)
-    -   [Create a new Heroku app:](#create-a-new-heroku-app)
-    -   [Set which network you want to deploy to:](#set-which-network-you-want-to-deploy-to)
-    -   [Overwrite the app's files with your relayer kit:](#overwrite-the-apps-files-with-your-relayer-kit)
-    -   [Open your new relayer on Heroku:](#open-your-new-relayer-on-heroku)
+    -   [Create a new Heroku app](#create-a-new-heroku-app)
+    -   [Overwrite the app's files with your relayer kit](#overwrite-the-apps-files-with-your-relayer-kit)
+    -   [Open your new relayer on Heroku](#open-your-new-relayer-on-heroku)
 -   [FAQ](#faq)
     -   [What is Dharma?](#what-is-dharma)
     -   [What is a Dharma Relayer?](#what-is-a-dharma-relayer)
     -   [Why start a Dharma Relayer?](#why-start-a-dharma-relayer)
-    -   [How does a Dharma Relayer generate revenue?](#how-does-a-dharma-relayer-generate-revenue)
+    -   [How does a Dharma Relayer make money?](#how-does-a-dharma-relayer-make-money)
+    -   [Are there existing Dharma Relayers?](#are-there-existing-dharma-relayers)
+    -   [Are all Dharma Relayers the same?](#are-all-dharma-relayers-the%C2%A0same)
     -   [What is the approval process for becoming a Dharma Relayer?](#what-is-the-approval-process-for-becoming-a-dharma-relayer)
     -   [What technical skills are required to operate a Dharma Relayer?](#what-technical-skills-are-required-to-operate-a-dharma-relayer)
     -   [Do I need to conform to any specific branding when launching a Dharma relayer?](#do-i-need-to-conform-to-any-specific-branding-when-launching-a-dharma-relayer)
 -   [Troubleshooting](#troubleshooting)
-    -   [I'm getting an error that blockchain failed to start](#blockchain-failed)
+    -   [I'm getting an error that blockchain failed to start](#im-getting-an-error-that-blockchain-failed-to-start)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -150,7 +151,7 @@ Otherwise, follow the instructions Heroku provides for [creating a new Heroku ap
 
 ## What is Dharma?
 
-Dharma is an open, permissionless protocol that enables anyone to engage in credit-based transactions on the Ethereum blockchain. Read more <a href="https://dharma.io/" target="_blank">here</a>.
+Dharma is a suite of developer tools and infrastructure that make it easy to build blockchain-based lending applications. Read more [here](https://dharma.io/).
 
 ## What is a Dharma Relayer?
 
@@ -164,9 +165,21 @@ We imagine a world in which the majority of financial transactions occur on glob
 
 In this new world, being a Relayer is akin to an early internet entrepreneur, providing a valuable service on the frontiers of the new economy.
 
-## How does a Dharma Relayer generate revenue?
+## How does a Dharma Relayer make money?
 
-Relayers earn a fee everytime a loan is filled on their site. The fee is some percentage of the principal amount as determined by the Relayer. Once the loan has been recorded on the blockchain, the protocol transfers the fee to the Relayer's address.
+Relayers earn a fee every time a loan is filled on their site. The fee is some percentage of the principal amount as determined by the Relayer. Once the transaction has been recorded on the blockchain, the Dharma protocol automatically transfers the fee to the Relayer's address.
+
+## Are there existing Dharma Relayers?
+
+While starting a Relayer is an intrepid task, you won't be alone. [Bloqboard](https://dapp.bloqboard.com/) launched earlier this year and has since gone on to raise a round of financing from esteemed investors in the crypto space.
+
+## Are all Dharma Relayers the same?
+
+We envision the Dharma ecosystem supporting many relayers &mdash; with individual relayers developing brands associated with their particular area of focus or domain expertise.
+
+For example, a Relayer could specialize in micro-finance, venture debt, or margin trading.
+
+While these markets might be modest today - over time, more and more financial transactions will take place on the blockchain, offering more and more opportunity for Relayers to grow their businesses.
 
 ## What is the approval process for becoming a Dharma Relayer?
 
