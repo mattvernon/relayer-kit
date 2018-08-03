@@ -3,11 +3,14 @@ import Dharma from "@dharmaprotocol/dharma.js";
 
 import DharmaContext from "./DharmaContext";
 
+// Get the host from the current environment. If it is not specified, we will assume we
+// are running a testnet or production build and use Metamask.
+const blockchainHost = process.env.REACT_APP_BLOCKCHAIN_HOST;
+
 let dharma;
-// Try running against a local blockchain.
-dharma = new Dharma("http://localhost:8545");
-if (!dharma.web3.isConnected()) {
-    // If Dharma couldn't connect to the local chain, connect to MetaMask.
+if (blockchainHost) {
+    dharma = new Dharma(blockchainHost);
+} else {
     dharma = new Dharma();
 }
 
@@ -22,6 +25,7 @@ class DharmaProvider extends Component {
         this.state = {
             // The tokens that the user has in their wallet.
             tokens: [],
+            dharma: null,
             // The tokens available for lending on Dharma Protocol.
             supportedTokens: [],
         };
