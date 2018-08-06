@@ -1,7 +1,6 @@
 // External libraries
 import React, { Component } from "react";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link } from 'react-router-dom'
 
 // Styling
 import "./Header.css";
@@ -9,29 +8,33 @@ import "./Header.css";
 class Header extends Component {
     render() {
         return (
-            <Navbar>
-                <Navbar.Header>
-                    <Navbar.Brand>Dharma Relayer</Navbar.Brand>
-                </Navbar.Header>
+            <header>
+                <h1>Dream Relay</h1>
 
-                <Nav>
-                    <LinkContainer to="/" exact={true}>
-                        <NavItem>Browse</NavItem>
-                    </LinkContainer>
+                <nav>
+                    <div className="nav-link">
+                      <Link to="/" exact={true}>
+                          Browse
+                      </Link>
+                    </div>
+                    <div className="nav-link">
+                      <Link to="/tokens">
+                          Tokens
+                      </Link>
+                    </div>
+                    <div className="nav-link">
+                      <Link to="/investments">
+                          Investments
+                      </Link>
+                    </div>
 
-                    <LinkContainer to="/create">
-                        <NavItem>Create</NavItem>
-                    </LinkContainer>
-
-                    <LinkContainer to="/tokens">
-                        <NavItem>Tokens</NavItem>
-                    </LinkContainer>
-
-                    <LinkContainer to="/investments">
-                        <NavItem>Investments</NavItem>
-                    </LinkContainer>
-                </Nav>
-            </Navbar>
+                    <Link
+                      to="/create"
+                      className="button">
+                        Request a Loan
+                    </Link>
+                </nav>
+            </header>
         );
     }
 }

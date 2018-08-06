@@ -1,0 +1,50 @@
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: #A29DC1;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+a:hover {
+  color: #110941;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+
+.nav-link {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.button {
+  display: inline-block;
+  background-color: blue;
+  padding: 15px 25px;
+  border-radius: 4px;
+  color: white;
+  margin-left: 20px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  color: #0004D3;
+  box-shadow: 0 5px 10px 0 rgba(0,1,73,0.14);
+}
+
+.button:visited {
+  color: white;
+}

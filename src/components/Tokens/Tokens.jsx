@@ -28,8 +28,12 @@ class Tokens extends Component {
 
                     <tbody>
                     {tokens.map((token) => {
+                      const iconPath = `icons/${token.symbol}.svg`;
                         return (
                             <tr key={token.symbol}>
+                                <td>
+                                  <img src={iconPath} />
+                                </td>
                                 <td>{token.symbol}</td>
                                 <td>{token.balance}</td>
                                 <td>
