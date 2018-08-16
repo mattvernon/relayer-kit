@@ -15,7 +15,7 @@ class Tokens extends Component {
         }
 
         return (
-            <div className="Tokens">
+            <div className="Tokens wrapper">
                 <Title>Your Tokens</Title>
                 <Table striped bordered condensed hover responsive>
                     <thead>
@@ -31,12 +31,9 @@ class Tokens extends Component {
                       const iconPath = `icons/${token.symbol}.svg`;
                         return (
                             <tr key={token.symbol}>
-                                <td>
-                                  <img src={iconPath} />
-                                </td>
-                                <td>{token.symbol}</td>
-                                <td>{token.balance}</td>
-                                <td>
+                                <td className="token-info"><img src={iconPath} />{token.symbol}</td>
+                                <td className="token-balance">{token.balance}</td>
+                                <td className="token-allowance">
                                     {token.hasUnlimitedAllowance ? "Unlimited" : token.allowance}
                                 </td>
                             </tr>

@@ -9,7 +9,9 @@ class Footer extends Component {
     render() {
         return (
             <footer>
+              <div className="wrapper">
                 <p>Dream Relay</p>
+              </div>
             </footer>
         );
     }

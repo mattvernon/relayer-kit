@@ -6,7 +6,9 @@ import "./Loading.css";
 
 class Loading extends React.Component {
     render() {
-        return <div className="Loading">Loading...</div>;
+        return <div className="Loading">
+          <div class="spinner"></div>
+        </div>;
     }
 }
 

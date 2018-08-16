@@ -163,6 +163,7 @@ class LoanRequests extends Component {
 
         return (
             <div className="LoanRequests">
+              <div className="wrapper">
                 <Title>Browse Loan Requests</Title>
 
                 <BootstrapTable
@@ -177,6 +178,7 @@ class LoanRequests extends Component {
                 {
                     data.length === 0 && <LoanRequestsEmpty/>
                 }
+              </div>
             </div>
         );
     }

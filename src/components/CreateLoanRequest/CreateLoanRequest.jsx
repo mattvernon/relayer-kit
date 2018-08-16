@@ -232,8 +232,9 @@ class CreateLoanRequest extends Component {
         const inputWidth = 5;
 
         return (
-            <div className="CreateLoanRequest">
+            <div className="CreateLoanRequest wrapper">
                 <Title>Create a Loan Request</Title>
+                <p>If you wish to recieve a loan, please submit a loan request below. Once submitted, your request will be available to be filled by other users looking to loan out their holdings.</p>
 
                 {error && <Error title="Unable to create loan request">{error}</Error>}
 

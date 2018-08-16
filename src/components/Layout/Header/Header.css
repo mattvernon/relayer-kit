@@ -1,5 +1,7 @@
 header {
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,6 +13,7 @@ a {
   color: #A29DC1;
   font-size: 14px;
   transition: 0.2s;
+  font-weight: 500;
 }
 
 a:hover {

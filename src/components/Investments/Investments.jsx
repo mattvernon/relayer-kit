@@ -89,7 +89,7 @@ class Investments extends React.Component {
         }
 
         return (
-            <div className="Investments">
+            <div className="Investments wrapper">
                 <Title>Your Investments</Title>
 
                 {
